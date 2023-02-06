@@ -11,7 +11,8 @@ class Music(models.Model):
                               null=False)
 
     img = models.ImageField(upload_to='images/music/covers/', blank=False,
-                            verbose_name='Изображение')
+                            verbose_name='Изображение',
+                            validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
     music_file = models.FileField(upload_to='files/tracks/', verbose_name='Файл с музыкой',
                                   validators=[FileExtensionValidator(allowed_extensions=['mp3', ])])
 
