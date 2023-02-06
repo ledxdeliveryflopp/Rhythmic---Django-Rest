@@ -1,0 +1,31 @@
+from rest_framework import generics, filters, permissions
+from .models import Profile
+from .serializers import ProfileSerializer, ProfileFullSerializer
+
+
+class ProfileAPIView(generics.ListCreateAPIView):
+    """ Получить информацию о всех пользователях """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username']
+
+
+class ProfileDetail(generics.RetrieveAPIView):
+    """ Получить информацию о пользователе по его id """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+
+class ProfileCreate(generics.CreateAPIView):
+    """ Регистрация """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileFullSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def perform_create(self, serializer):
+        """ Хэшируем пароль переопределяя метод из CreateModelMixin """
+        instance = serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+
