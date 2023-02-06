@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from rest_framework import generics, filters
+from rest_framework.authentication import TokenAuthentication
 
 from .models import Music
 from .serializers import MusicSerializer, MusicCreateSerializer
