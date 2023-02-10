@@ -1,7 +1,12 @@
-from rest_framework import generics, filters, permissions, authentication
+from django.contrib.auth import login
+from rest_framework import filters
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Profile
-from .serializers import ProfileSerializer, ProfileFullSerializer
-from rest_framework import exceptions
+from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from knox.models import AuthToken
+from knox.views import LoginView as KnoxLoginView
 
 
 class ProfileAPIView(generics.ListCreateAPIView):
@@ -18,29 +23,29 @@ class ProfileDetail(generics.RetrieveAPIView):
     serializer_class = ProfileSerializer
 
 
-class ProfileCreate(generics.CreateAPIView):
-    """ Регистрация """
-    queryset = Profile.objects.all()
-    serializer_class = ProfileFullSerializer
+class RegisterAPI(generics.CreateAPIView):
+    """ Регистрация"""
+    serializer_class = RegisterSerializer
     permission_classes = (permissions.AllowAny,)
 
-    def perform_create(self, serializer):
-        """ Хэшируем пароль переопределяя метод из CreateModelMixin """
-        instance = serializer.save()
-        instance.set_password(instance.password)
-        instance.save()
+    def perform_create(self, serializer, *args, **kwargs):
+        user = serializer.save()
+        user.set_password(user.password)
+        user.save()
+        return Response({
+            "user": ProfileSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 
-# class ExampleAuthentication(authentication.BaseAuthentication):
-#     def authenticate(self, request):
-#         username = request.META.get('username')
-#         if not username:
-#             return None
-#
-#         try:
-#             user = Profile.objects.get(username=username)
-#         except Profile.DoesNotExist:
-#             raise exceptions.AuthenticationFailed('No such user')
-#
-#         return user, None
+class LoginAPI(KnoxLoginView):
+    """ Вход """
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = LoginSerializer
 
+    def post(self, request, format=None):
+        serializer = AuthTokenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return super(LoginAPI, self).post(request, format=None)

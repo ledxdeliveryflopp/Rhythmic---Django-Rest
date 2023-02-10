@@ -1,8 +1,6 @@
 from rest_framework import generics, filters
-from rest_framework.authentication import TokenAuthentication
-
 from .models import Music
-from .serializers import MusicSerializer, MusicCreateSerializer, MusicDetailSerializer
+from .serializers import MusicSerializer, MusicCreateSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -13,14 +11,10 @@ class MusicAPIView(generics.ListCreateAPIView):
     search_fields = ['title', 'genre__title', 'upload_by__username', ]
 
 
-class MusicDetail(generics.RetrieveAPIView):
-    """ Получить информацию о музыке по ее id """
-    queryset = Music.objects.all()
-    serializer_class = MusicDetailSerializer
-
-
 class MusicCreate(generics.CreateAPIView):
     """ Создание музыки """
     queryset = Music.objects.all()
     serializer_class = MusicCreateSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(upload_by=self.request.user)

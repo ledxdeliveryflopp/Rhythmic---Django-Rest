@@ -5,13 +5,12 @@ from rest_framework.authtoken.models import Token
 
 
 class Profile(AbstractUser):
-    USER_TYPE_CHOICES = (
-        (1, 'Обычный пользователь'),
-        (2, 'Исполнитель'),
-    )
+    # USER_TYPE_CHOICES = (
+    #     (1, 'Обычный пользователь'),
+    #     (2, 'Исполнитель'),
+    # )
 
-    type_user = models.IntegerField(verbose_name='Тип профиля'
-                                                 , choices=USER_TYPE_CHOICES, default=1)
+    type_user = models.BooleanField(verbose_name='Исполнитель?', default=False)
     img = models.ImageField(upload_to='images/user/avatars/', null=True, blank=True,
                             verbose_name='Аватар',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])

@@ -13,23 +13,13 @@ class GenreSerializer(ModelSerializer):
 
 
 class MusicSerializer(ModelSerializer):
-    """ Сериалайрез музыки на главной странице"""
+    """ Сериалайрез музыки """
     upload_by = ProfileMusicSerializer(read_only=True)
     genre = GenreSerializer(read_only=True)
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', ]
-
-
-class MusicDetailSerializer(ModelSerializer):
-    """ Сериалайрез музыки на странице музыки"""
-    upload_by = ProfileMusicSerializer(read_only=True)
-    genre = GenreSerializer(read_only=True)
-
-    class Meta:
-        model = Music
-        fields = ['id', 'title', 'upload_by', 'genre', 'img', 'music_file', ]
+        fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', 'music_file', ]
 
 
 class MusicCreateSerializer(ModelSerializer):
@@ -37,5 +27,5 @@ class MusicCreateSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = '__all__'
+        fields = ['id', 'title', 'genre', 'img', 'music_file', ]
 
