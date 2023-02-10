@@ -13,6 +13,17 @@ class GenreSerializer(ModelSerializer):
 
 
 class MusicSerializer(ModelSerializer):
+    """ Сериалайрез музыки на главной странице"""
+    upload_by = ProfileMusicSerializer(read_only=True)
+    genre = GenreSerializer(read_only=True)
+
+    class Meta:
+        model = Music
+        fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', ]
+
+
+class MusicDetailSerializer(ModelSerializer):
+    """ Сериалайрез музыки на странице музыки"""
     upload_by = ProfileMusicSerializer(read_only=True)
     genre = GenreSerializer(read_only=True)
 

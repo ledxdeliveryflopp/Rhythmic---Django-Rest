@@ -1,6 +1,7 @@
-from rest_framework import generics, filters, permissions
+from rest_framework import generics, filters, permissions, authentication
 from .models import Profile
 from .serializers import ProfileSerializer, ProfileFullSerializer
+from rest_framework import exceptions
 
 
 class ProfileAPIView(generics.ListCreateAPIView):
@@ -28,4 +29,18 @@ class ProfileCreate(generics.CreateAPIView):
         instance = serializer.save()
         instance.set_password(instance.password)
         instance.save()
+
+
+# class ExampleAuthentication(authentication.BaseAuthentication):
+#     def authenticate(self, request):
+#         username = request.META.get('username')
+#         if not username:
+#             return None
+#
+#         try:
+#             user = Profile.objects.get(username=username)
+#         except Profile.DoesNotExist:
+#             raise exceptions.AuthenticationFailed('No such user')
+#
+#         return user, None
 

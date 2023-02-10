@@ -9,6 +9,8 @@ class Music(models.Model):
                                   blank=False, null=False)
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр', blank=False,
                               null=False)
+    likes = models.IntegerField(default=0, verbose_name='коллво лайков')
+    # likes_by = models.ManyToManyField(Profile, verbose_name='проголосовавшие', blank=True)
 
     img = models.ImageField(upload_to='images/music/covers/', blank=False,
                             verbose_name='Изображение',
