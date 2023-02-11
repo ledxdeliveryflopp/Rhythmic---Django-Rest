@@ -20,6 +20,7 @@ class ProfileMusicSerializer(ModelSerializer):
 
 
 class RegisterSerializer(ModelSerializer):
+    """ Сериалайзер для регистрации"""
     password = CharField(write_only=True, required=True)
 
     class Meta:
@@ -28,6 +29,7 @@ class RegisterSerializer(ModelSerializer):
 
 
 class LoginSerializer(ModelSerializer):
+    """ Сериалайзер для логина"""
 
     class Meta:
         model = Profile

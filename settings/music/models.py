@@ -4,7 +4,7 @@ from user.models import Profile
 
 
 class Music(models.Model):
-    title = models.CharField(max_length=50, unique=True)
+    title = models.CharField(max_length=50)
     upload_by = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Автор',
                                   blank=False, null=False)
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр', blank=False,
