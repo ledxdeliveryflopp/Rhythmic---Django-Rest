@@ -1,4 +1,4 @@
-FROM python:3.12-rc-slim-buster
+FROM python:3.8.16-buster
 
 WORKDIR /settings
 
@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ['python', 'manage.py', 'runserver']
+CMD ["python", "manage.py", "runserver"]
