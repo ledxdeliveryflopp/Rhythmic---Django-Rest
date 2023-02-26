@@ -30,14 +30,9 @@ class RegisterSerializer(ModelSerializer):
 
 class LoginSerializer(ModelSerializer):
     """ Сериалайзер для логина"""
+    password = CharField(write_only=True, required=True)
 
     class Meta:
         model = Profile
-        fields = ('id', 'username', 'password')
-        password = CharField(write_only=True, required=True)
+        fields = ['id', 'username', 'password']
 
-    def validate(self, data):
-        user = authenticate(**data)
-        if user and user.is_active:
-            return user
-        raise ValidationError('Не верные данные')

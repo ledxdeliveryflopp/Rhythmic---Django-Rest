@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +98,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'knox.auth.TokenAuthentication',
     ]
+}
+
+REST_KNOX = {
+    'TOKEN_TTL': timedelta(hours=10), #time to live (without refresh)
+    'TOKEN_LIMIT_PER_USER': None,
+    'AUTO_REFRESH': True,
+    'MIN_REFRESH_INTERVAL': 60 #number of seconds
 }
 
 LANGUAGE_CODE = 'ru-RU'
