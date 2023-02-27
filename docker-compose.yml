@@ -1,25 +1,41 @@
 version: "3.8"
 services:
   postgres:
-    image: postgres:15
+    image: postgres:15-alpine
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/
     ports:
       - "5432:5432"
 
   adminer:
     image: adminer
     restart: always
-    depends_on:
+    links:
       - postgres
     ports:
       - "8080:8080"
 
   backend:
-    depends_on:
+    links:
       - postgres
+      - adminer
     build: ./settings/
-    
+    restart: always
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py makemigrations user &&
+             python manage.py migrate user &&
+             python manage.py makemigrations music &&
+             python manage.py migrate music &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

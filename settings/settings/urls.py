@@ -7,6 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     # path('api/auth/', include('knox.urls')),
-    path('api/v1/music/', include('music.urls', namespace='music')),
-    path('api/v1/user/', include('user.urls', namespace='user')),
+    path('api/', include('music.urls', namespace='music')),
+    path('api/', include('user.urls', namespace='user')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
