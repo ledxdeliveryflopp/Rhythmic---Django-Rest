@@ -8,7 +8,7 @@ class IsUserTypeTrue(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return request.user.is_staff or request.user.is_authenticated and request.user.type == True
+        return request.user.is_staff or request.user.is_authenticated and request.user.type is True
 
 
 
