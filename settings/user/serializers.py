@@ -1,5 +1,3 @@
-from django.contrib.auth import authenticate
-from rest_framework.exceptions import ValidationError
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from .models import Profile
@@ -9,7 +7,7 @@ class ProfileSerializer(ModelSerializer):
     """ Сериалайзер для вывода всех пользователей"""
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', ]
+        fields = ['id', 'username', 'type', 'img', ]
 
 
 class ProfileMusicSerializer(ModelSerializer):
@@ -25,7 +23,7 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', 'password', 'email']
+        fields = ['id', 'username', 'type', 'img', 'password', 'email']
 
 
 class LoginSerializer(ModelSerializer):

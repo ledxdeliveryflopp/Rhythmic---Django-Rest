@@ -24,6 +24,7 @@ class MusicSerializer(ModelSerializer):
 
 class MusicCreateSerializer(ModelSerializer):
     """ Сериалайзер для создания музыки"""
+    genre = GenreSerializer(read_only=True)
 
     class Meta:
         model = Music

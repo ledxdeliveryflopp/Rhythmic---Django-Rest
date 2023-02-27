@@ -9,7 +9,7 @@ from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 
 
-class ProfileAPIView(generics.ListCreateAPIView):
+class ProfileAllAPIView(generics.ListCreateAPIView):
     """ Получить информацию о всех пользователях """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -21,6 +21,7 @@ class ProfileDetail(generics.RetrieveAPIView):
     """ Получить информацию о пользователе по его id """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = (permissions.AllowAny,)
 
 
 class RegisterAPI(generics.CreateAPIView):
