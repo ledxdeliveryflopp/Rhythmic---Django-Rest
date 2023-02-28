@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
+
 class Profile(AbstractUser):
     type = models.BooleanField(verbose_name='Исполнитель?', default=False)
     img = models.ImageField(upload_to='images/user/avatars/', null=True, blank=True,

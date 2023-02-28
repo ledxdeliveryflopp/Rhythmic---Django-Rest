@@ -11,4 +11,15 @@ class IsUserTypeTrue(permissions.BasePermission):
         return request.user.is_staff or request.user.is_authenticated and request.user.type is True
 
 
+class IsUserOwner(permissions.BasePermission):
+    """Проверка на в"""
+
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return request.user.is_staff or request.user.is_authenticated and object.author == request.user
+
+
+
 

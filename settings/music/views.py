@@ -2,7 +2,7 @@ from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Music
 from .permissions import IsUserTypeTrue
-from .serializers import MusicSerializer, MusicCreateSerializer
+from .serializers import MusicSerializer, MusicCreateUpdateSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -16,7 +16,16 @@ class MusicAPIView(generics.ListCreateAPIView):
 
 class MusicCreate(generics.CreateAPIView):
     """ Создание музыки """
-    serializer_class = MusicCreateSerializer
+    serializer_class = MusicCreateUpdateSerializer
+    permission_classes = (IsUserTypeTrue,)
+
+    def perform_create(self, serializer):
+        serializer.save(upload_by=self.request.user)
+
+
+class MusicUpdate(generics.UpdateAPIView):
+    """ Обновление музыки """
+    serializer_class = MusicCreateUpdateSerializer
     permission_classes = (IsUserTypeTrue,)
 
     def perform_create(self, serializer):
