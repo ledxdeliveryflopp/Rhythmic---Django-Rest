@@ -1,8 +1,10 @@
-from rest_framework import generics, filters
+from rest_framework import generics, filters, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
+
 from .models import Music
-from .permissions import IsUserTypeTrue
-from .serializers import MusicSerializer, MusicCreateUpdateSerializer
+from .permissions import IsUserTypeTrue, IsUserOwner
+from .serializers import MusicSerializer, MusicCreateSerializer, MusicUpdateSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -16,7 +18,7 @@ class MusicAPIView(generics.ListCreateAPIView):
 
 class MusicCreate(generics.CreateAPIView):
     """ Создание музыки """
-    serializer_class = MusicCreateUpdateSerializer
+    serializer_class = MusicCreateSerializer
     permission_classes = (IsUserTypeTrue,)
 
     def perform_create(self, serializer):
@@ -25,8 +27,20 @@ class MusicCreate(generics.CreateAPIView):
 
 class MusicUpdate(generics.UpdateAPIView):
     """ Обновление музыки """
-    serializer_class = MusicCreateUpdateSerializer
-    permission_classes = (IsUserTypeTrue,)
+    queryset = Music.objects.all()
+    serializer_class = MusicUpdateSerializer
+    permission_classes = (IsUserOwner,)
 
-    def perform_create(self, serializer):
-        serializer.save(upload_by=self.request.user)
+    def patch(self, *args, **kwargs):
+        # Получаем объект
+        instance = Music.objects.get(pk=kwargs.get('pk'))
+        # Получаем из запроса наш файл
+        instance.img = self.request.FILES['img']
+        instance.music_file = self.request.FILES['music_file']
+        # Сохраняем запись
+        instance.save()
+        # Возвращаем ответ
+        return Response(
+            MusicUpdateSerializer(instance).data,
+            status=status.HTTP_200_OK
+        )

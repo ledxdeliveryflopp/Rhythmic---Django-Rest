@@ -65,6 +65,7 @@ DATABASES = {
     }
 }
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -80,14 +81,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.ScryptPasswordHasher',
-]
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser'
@@ -101,10 +94,10 @@ REST_FRAMEWORK = {
 }
 
 REST_KNOX = {
-    'TOKEN_TTL': timedelta(hours=10), #time to live (without refresh)
+    'TOKEN_TTL': timedelta(hours=10),  # время жизни токена
     'TOKEN_LIMIT_PER_USER': None,
     'AUTO_REFRESH': True,
-    'MIN_REFRESH_INTERVAL': 60 #number of seconds
+    'MIN_REFRESH_INTERVAL': 60
 }
 
 LANGUAGE_CODE = 'ru-RU'

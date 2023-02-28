@@ -1,5 +1,7 @@
 from rest_framework import permissions
 
+from .models import Music
+
 
 class IsUserTypeTrue(permissions.BasePermission):
     """Проверка на исполнителя"""
@@ -12,14 +14,11 @@ class IsUserTypeTrue(permissions.BasePermission):
 
 
 class IsUserOwner(permissions.BasePermission):
-    """Проверка на в"""
+    """Проверка на владение записи"""
 
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return request.user.is_staff or request.user.is_authenticated and object.author == request.user
-
-
-
-
+        return request.user.is_staff or request.user.is_authenticated and request.user.type is \
+            True and Music.upload_by == request.user

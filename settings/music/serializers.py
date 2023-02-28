@@ -22,11 +22,19 @@ class MusicSerializer(ModelSerializer):
         fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', 'music_file', ]
 
 
-class MusicCreateUpdateSerializer(ModelSerializer):
+class MusicCreateSerializer(ModelSerializer):
     """ Сериалайзер для создания музыки"""
-    genre = GenreSerializer(read_only=True)
 
     class Meta:
         model = Music
         fields = ['id', 'title', 'genre', 'img', 'music_file', ]
-        read_only_fields = ['id', ' upload_by', 'likes']
+
+
+class MusicUpdateSerializer(ModelSerializer):
+    """ Сериалайзер для создания музыки"""
+    class Meta:
+        model = Music
+        fields = ['id', 'title', 'genre', 'img', 'music_file', ]
+
+
+# authentication_classes = [TokenAuthentication]
