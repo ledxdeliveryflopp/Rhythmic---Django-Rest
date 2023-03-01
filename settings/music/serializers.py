@@ -31,7 +31,8 @@ class MusicCreateSerializer(ModelSerializer):
 
 
 class MusicUpdateSerializer(ModelSerializer):
-    """ Сериалайзер для создания музыки"""
+    """ Сериалайзер для обновления музыки"""
+
     class Meta:
         model = Music
         fields = ['id', 'title', 'genre', 'img', 'music_file', ]

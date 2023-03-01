@@ -1,12 +1,13 @@
 from django.contrib.auth import login
-from rest_framework import filters
+from rest_framework import filters, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Profile
-from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer
+from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
+from .permissions import IsUserUpdate
 
 
 class ProfileAllAPIView(generics.ListCreateAPIView):
@@ -15,6 +16,7 @@ class ProfileAllAPIView(generics.ListCreateAPIView):
     serializer_class = ProfileSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['username']
+    permission_classes = (permissions.AllowAny,)
 
 
 class ProfileDetail(generics.RetrieveAPIView):
@@ -37,6 +39,21 @@ class RegisterAPI(generics.CreateAPIView):
             "user": ProfileSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
         })
+
+
+class UpdateUserAPI(generics.UpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = UpdateSerializer
+    permissions_classes = (IsUserUpdate, )
+
+    def patch(self, request, *args, **kwargs):
+        instance = request.user.get
+        instance.img = self.request.files['img']
+        instance.save()
+        return Response(
+            UpdateSerializer(instance).data,
+            status=status.HTTP_200_OK
+        )
 
 
 class LoginAPI(KnoxLoginView):

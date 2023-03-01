@@ -26,6 +26,14 @@ class RegisterSerializer(ModelSerializer):
         fields = ['id', 'username', 'type', 'img', 'password', 'email']
 
 
+class UpdateSerializer(ModelSerializer):
+    """ Сериалайзер для регистрации"""
+
+    class Meta:
+        model = Profile
+        fields = ['username', 'img', 'email']
+
+
 class LoginSerializer(ModelSerializer):
     """ Сериалайзер для логина"""
     password = CharField(write_only=True, required=True)
