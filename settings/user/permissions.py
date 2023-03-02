@@ -8,4 +8,4 @@ class IsUserUpdate(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return request.user.is_staff or request.user.is_authenticated and request.user.id == request.user.id
+        return request.user.is_staff or request.user.is_authenticated

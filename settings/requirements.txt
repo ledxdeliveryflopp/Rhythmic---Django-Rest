@@ -14,3 +14,7 @@ pycparser==2.21
 pytz==2022.7.1
 sqlparse==0.4.3
 tzdata==2022.7
+
+# docker compose up -d —build
+# docker volume ls
+# docker container prune

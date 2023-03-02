@@ -27,7 +27,7 @@ class Music(models.Model):
 
 
 class Genre(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Наименования', unique=True, null=True)
+    title = models.CharField(max_length=100, verbose_name='Наименование', unique=True, null=True)
 
     class Meta:
         verbose_name = 'Жанр'

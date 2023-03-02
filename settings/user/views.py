@@ -2,6 +2,8 @@ from django.contrib.auth import login
 from rest_framework import filters, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAdminUser
 from rest_framework.renderers import JSONRenderer
 
 from .models import Profile
@@ -51,13 +53,18 @@ class UpdateUserAPI(generics.UpdateAPIView):
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
-        if obj.id != self.request.user.id:
-            return Response(
-                status=status.HTTP_403_FORBIDDEN
-            )
+        if self.request.user.is_staff:
+            return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
+        elif obj.id != self.request.user.id:
+            raise PermissionDenied()
         return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.id != self.request.user.id:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+            )
         instance = request.user.get
         instance.img = self.request.files['img']
         instance.save()

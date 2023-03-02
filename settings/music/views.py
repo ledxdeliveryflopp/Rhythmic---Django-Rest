@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from .models import Music
 from .permissions import IsUserTypeTrue, IsUserOwner
-from .serializers import MusicSerializer, MusicCreateSerializer, MusicUpdateSerializer
+from .serializers import MusicSerializer, MusicCreateUpdateSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -18,7 +18,7 @@ class MusicAPIView(generics.ListCreateAPIView):
 
 class MusicCreate(generics.CreateAPIView):
     """ Создание музыки """
-    serializer_class = MusicCreateSerializer
+    serializer_class = MusicCreateUpdateSerializer
     permission_classes = (IsUserTypeTrue,)
 
     def perform_create(self, serializer):
@@ -28,7 +28,7 @@ class MusicCreate(generics.CreateAPIView):
 class MusicUpdate(generics.UpdateAPIView):
     """ Обновление музыки """
     queryset = Music.objects.all()
-    serializer_class = MusicUpdateSerializer
+    serializer_class = MusicCreateUpdateSerializer
     permission_classes = (IsUserOwner,)
 
     def patch(self, *args, **kwargs):
