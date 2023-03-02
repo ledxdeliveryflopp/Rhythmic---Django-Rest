@@ -1,6 +1,9 @@
 from django.contrib.auth import login
 from rest_framework import filters, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.decorators import api_view
+from rest_framework.renderers import JSONRenderer
+
 from .models import Profile
 from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer
 from rest_framework import generics, permissions
@@ -44,7 +47,15 @@ class RegisterAPI(generics.CreateAPIView):
 class UpdateUserAPI(generics.UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = UpdateSerializer
-    permissions_classes = (IsUserUpdate, )
+    permission_classes = (IsUserUpdate, )
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.id != self.request.user.id:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN
+            )
+        return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
         instance = request.user.get
