@@ -51,14 +51,6 @@ class UpdateUserAPI(generics.UpdateAPIView):
     serializer_class = UpdateSerializer
     permission_classes = (IsUserUpdate, )
 
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if self.request.user.is_staff:
-            return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
-        elif obj.id != self.request.user.id:
-            raise PermissionDenied()
-        return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
-
     def patch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.id != self.request.user.id:
@@ -73,6 +65,13 @@ class UpdateUserAPI(generics.UpdateAPIView):
             status=status.HTTP_200_OK
         )
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if self.request.user.is_staff:
+            return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
+        elif obj.id != self.request.user.id:
+            raise PermissionDenied()
+        return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
 
 class LoginAPI(KnoxLoginView):
     """ Вход """
