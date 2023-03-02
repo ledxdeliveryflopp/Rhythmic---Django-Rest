@@ -73,6 +73,7 @@ class UpdateUserAPI(generics.UpdateAPIView):
             raise PermissionDenied()
         return super(UpdateUserAPI, self).dispatch(request, *args, **kwargs)
 
+
 class LoginAPI(KnoxLoginView):
     """ Вход """
     permission_classes = (permissions.AllowAny,)
