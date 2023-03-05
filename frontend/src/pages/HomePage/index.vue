@@ -1,4 +1,10 @@
-<template>Домашняя страница</template>
+<template>
+  <main class="main">
+    <section class="sec">
+      <div class="home-page">Домашняя страница</div>
+    </section>
+  </main>
+</template>
 
 <script>
 export default {
@@ -6,4 +12,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use "style";
+</style>
