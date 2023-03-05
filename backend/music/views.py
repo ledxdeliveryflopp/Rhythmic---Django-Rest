@@ -41,6 +41,6 @@ class MusicUpdate(generics.UpdateAPIView):
         instance.save()
         # Возвращаем ответ
         return Response(
-            MusicUpdateSerializer(instance).data,
+            MusicCreateUpdateSerializer(instance).data,
             status=status.HTTP_200_OK
         )
