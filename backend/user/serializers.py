@@ -42,5 +42,5 @@ class LoginSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'password']
+        fields = ['username', 'password']
 

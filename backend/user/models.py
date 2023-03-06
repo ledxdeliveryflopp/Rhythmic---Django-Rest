@@ -4,6 +4,14 @@ from django.db import models
 
 
 class Profile(AbstractUser):
+    SINGER = 'Исполнитель'
+    STANDARD = 'Стандартный'
+    USER_STATUS = (
+        (SINGER, 'Исполнитель'),
+        (STANDARD, 'Стандартный'),
+    )
+
+    type_user = models.CharField(max_length=30, choices=USER_STATUS)
     type = models.BooleanField(verbose_name='Исполнитель?', default=False)
     img = models.ImageField(upload_to='images/user/avatars/', null=True, blank=True,
                             verbose_name='Аватар',
@@ -13,7 +21,7 @@ class Profile(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-    def __str__(self):
-        return self.username
+    def __str__(self) -> str:
+        return f'{self.username}, {self.type_user}'
 
 

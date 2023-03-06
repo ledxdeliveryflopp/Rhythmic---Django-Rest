@@ -38,6 +38,10 @@ class RegisterAPI(generics.CreateAPIView):
 
     def perform_create(self, serializer, *args, **kwargs):
         user = serializer.save()
+        if user.type is True:
+            user.type_user = 'Исполнитель'
+        else:
+            user.type_user = 'Стандартный'
         user.set_password(user.password)
         user.save()
         return Response({

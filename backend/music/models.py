@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from rest_framework.exceptions import ValidationError
 from user.models import Profile
 
 
@@ -16,14 +18,15 @@ class Music(models.Model):
                             verbose_name='Изображение',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
     music_file = models.FileField(upload_to='files/tracks/', verbose_name='Файл с музыкой',
-                                  validators=[FileExtensionValidator(allowed_extensions=['mp3', ])])
+                                  validators=[FileExtensionValidator(allowed_extensions=['mp3',
+                                                                                         ])])
 
     class Meta:
         verbose_name = 'Музыка'
         verbose_name_plural = 'Музыка'
 
-    def __str__(self):
-        return self.title
+    def __str__(self) -> str:
+        return f'{self.title}, {self.upload_by.type_user}'
 
 
 class Genre(models.Model):
@@ -33,6 +36,6 @@ class Genre(models.Model):
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
 
-    def __str__(self):
-        return self.title
+    def __str__(self) -> str:
+        return f'{self.title}'
 
