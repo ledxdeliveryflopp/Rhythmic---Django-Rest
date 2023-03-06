@@ -26,7 +26,7 @@ class Music(models.Model):
         verbose_name_plural = 'Музыка'
 
     def __str__(self) -> str:
-        return f'{self.title}, {self.upload_by.type_user}'
+        return f'{self.title}, {self.upload_by.username}'
 
 
 class Genre(models.Model):
