@@ -19,6 +19,16 @@ class MusicSerializer(ModelSerializer):
 
     class Meta:
         model = Music
+        fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', ]
+
+
+class MusicListenSerializer(ModelSerializer):
+    """ Сериалайрез прослушивания музыки """
+    upload_by = ProfileMusicSerializer(read_only=True)
+    genre = GenreSerializer(read_only=True)
+
+    class Meta:
+        model = Music
         fields = ['id', 'title', 'upload_by', 'genre', 'img', 'likes', 'music_file', ]
 
 
@@ -30,4 +40,3 @@ class MusicCreateUpdateSerializer(ModelSerializer):
         fields = ['id', 'title', 'genre', 'img', 'music_file', ]
 
 
-# authentication_classes = [TokenAuthentication]

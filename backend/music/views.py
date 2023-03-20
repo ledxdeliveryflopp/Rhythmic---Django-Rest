@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from .models import Music
 from .permissions import IsUserTypeTrue, IsUserOwner
-from .serializers import MusicSerializer, MusicCreateUpdateSerializer
+from .serializers import MusicSerializer, MusicCreateUpdateSerializer, MusicListenSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -14,6 +14,14 @@ class MusicAPIView(generics.ListCreateAPIView):
     serializer_class = MusicSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'genre__title', 'upload_by__username', ]
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+
+
+class MusicListenAPIView(generics.ListCreateAPIView):
+    """ Получить определенный трек по ID """
+    queryset = Music.objects.all()
+    serializer_class = MusicListenSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
