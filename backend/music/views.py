@@ -1,5 +1,6 @@
+from knox.auth import TokenAuthentication
 from rest_framework import generics, filters, status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Music
@@ -13,13 +14,15 @@ class MusicAPIView(generics.ListCreateAPIView):
     serializer_class = MusicSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'genre__title', 'upload_by__username', ]
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
 
 class MusicCreate(generics.CreateAPIView):
     """ Создание музыки """
     serializer_class = MusicCreateUpdateSerializer
     permission_classes = (IsUserTypeTrue,)
+    authentication_classes = (TokenAuthentication,)
 
     def perform_create(self, serializer):
         serializer.save(upload_by=self.request.user)
@@ -30,6 +33,7 @@ class MusicUpdate(generics.UpdateAPIView):
     queryset = Music.objects.all()
     serializer_class = MusicCreateUpdateSerializer
     permission_classes = (IsUserOwner,)
+    authentication_classes = (TokenAuthentication,)
 
     def patch(self, *args, **kwargs):
         # Получаем объект
