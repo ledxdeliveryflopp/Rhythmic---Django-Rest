@@ -1,6 +1,4 @@
-from rest_framework import status
 from rest_framework.fields import CharField
-from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 from .models import Profile
 
@@ -26,7 +24,6 @@ class RegisterSerializer(ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'username', 'type', 'img', 'password', 'email']
-
 
 class UpdateSerializer(ModelSerializer):
     """ Сериалайзер для регистрации"""

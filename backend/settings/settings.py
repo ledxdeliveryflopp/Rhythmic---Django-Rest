@@ -74,6 +74,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 9,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -101,10 +104,11 @@ REST_FRAMEWORK = {
 
 REST_KNOX = {
     'TOKEN_TTL': timedelta(hours=10),  # время жизни токена
-    'TOKEN_LIMIT_PER_USER': None,
+    'TOKEN_LIMIT_PER_USER': 1,
     'AUTO_REFRESH': True,
     'MIN_REFRESH_INTERVAL': 60
 }
+
 
 LANGUAGE_CODE = 'ru-RU'
 
@@ -122,4 +126,4 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.Profile'
-MAX_UPLOAD_SIZE = "10485760"  # 10MB
+

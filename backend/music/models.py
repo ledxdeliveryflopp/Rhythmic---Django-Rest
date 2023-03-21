@@ -1,7 +1,5 @@
-from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db import models
-from rest_framework.exceptions import ValidationError
 from user.models import Profile
 
 
@@ -12,7 +10,6 @@ class Music(models.Model):
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр', blank=False,
                               null=False)
     likes = models.IntegerField(default=0, verbose_name='коллво лайков')
-    # likes_by = models.ManyToManyField(Profile, verbose_name='проголосовавшие', blank=True)
 
     img = models.ImageField(upload_to='images/music/covers/', blank=False,
                             verbose_name='Изображение',

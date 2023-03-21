@@ -1,6 +1,6 @@
 from knox.auth import TokenAuthentication
 from rest_framework import generics, filters, status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Music
@@ -18,7 +18,7 @@ class MusicAPIView(generics.ListCreateAPIView):
     authentication_classes = (TokenAuthentication,)
 
 
-class MusicListenAPIView(generics.ListCreateAPIView):
+class MusicListenAPIView(generics.RetrieveAPIView):
     """ Получить определенный трек по ID """
     queryset = Music.objects.all()
     serializer_class = MusicListenSerializer

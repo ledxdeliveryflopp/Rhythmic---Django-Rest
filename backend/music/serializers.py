@@ -1,6 +1,5 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Music, Genre
-
 from user.serializers import ProfileMusicSerializer
 
 
@@ -33,7 +32,8 @@ class MusicListenSerializer(ModelSerializer):
 
 
 class MusicCreateUpdateSerializer(ModelSerializer):
-    """ Сериалайзер для обновления музыки"""
+    """ Сериалайзер для обновления-создания музыки"""
+    genre = GenreSerializer()
 
     class Meta:
         model = Music
