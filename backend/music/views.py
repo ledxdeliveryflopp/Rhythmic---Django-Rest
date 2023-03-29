@@ -2,7 +2,6 @@ from knox.auth import TokenAuthentication
 from rest_framework import generics, filters, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from .models import Music
 from .permissions import IsUserTypeTrue, IsUserOwner
 from .serializers import MusicSerializer, MusicCreateUpdateSerializer, MusicListenSerializer
@@ -13,7 +12,7 @@ class MusicAPIView(generics.ListCreateAPIView):
     queryset = Music.objects.all().order_by('-likes')
     serializer_class = MusicSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'genre__title', 'upload_by__username', ]
+    search_fields = ['title', 'genre', 'upload_by__username', ]
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 

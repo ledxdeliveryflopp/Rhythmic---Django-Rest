@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'django_cleanup.apps.CleanupConfig',
     'knox',
     'music',
@@ -64,8 +65,6 @@ DATABASES = {
         'PORT': "5432",
     }
 }
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -126,4 +125,3 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.Profile'
-

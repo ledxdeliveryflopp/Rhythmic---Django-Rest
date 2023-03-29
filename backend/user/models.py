@@ -1,9 +1,6 @@
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.password_validation import validate_password
 from django.core.validators import FileExtensionValidator
 from django.db import models
-
-from .validators import NumberValidator, SymbolValidator
 
 
 class Profile(AbstractUser):
@@ -14,8 +11,7 @@ class Profile(AbstractUser):
         (STANDARD, 'Стандартный'),
     )
 
-    type_user = models.CharField(max_length=30, choices=USER_STATUS)
-    type = models.BooleanField(verbose_name='Исполнитель?', default=False)
+    type_user = models.CharField(max_length=30, choices=USER_STATUS, verbose_name='Тип профиля')
     img = models.ImageField(upload_to='images/user/avatars/', null=True, blank=True,
                             verbose_name='Аватар',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])

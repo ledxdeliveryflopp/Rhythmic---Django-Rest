@@ -5,7 +5,6 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Profile
 from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer
 from rest_framework import generics, permissions
-from rest_framework.response import Response
 from knox.views import LoginView as KnoxLoginView
 from .permissions import IsUserUpdate
 
@@ -35,15 +34,8 @@ class RegisterAPI(generics.CreateAPIView):
 
     def perform_create(self, serializer, *args, **kwargs):
         user = serializer.save()
-        if user.type is True:
-            user.type_user = 'Исполнитель'
-        else:
-            user.type_user = 'Стандартный'
         user.set_password(user.password)
         user.save()
-        return Response({
-            "user": ProfileSerializer(user, context=self.get_serializer_context()).data
-        })
 
 
 class UpdateUserAPI(generics.UpdateAPIView):
