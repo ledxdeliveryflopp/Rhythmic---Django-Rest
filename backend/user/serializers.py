@@ -7,7 +7,7 @@ class ProfileSerializer(ModelSerializer):
     """ Сериалайзер для вывода всех пользователей"""
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type', 'img', ]
+        fields = ['id', 'username', 'type_user', 'img', ]
 
 
 class ProfileMusicSerializer(ModelSerializer):
