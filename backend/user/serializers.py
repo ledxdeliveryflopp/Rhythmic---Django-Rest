@@ -10,6 +10,13 @@ class ProfileSerializer(ModelSerializer):
         fields = ['id', 'username', 'type_user', 'img', ]
 
 
+class ProfileIDSerializer(ModelSerializer):
+    """ Сериалайзер для вывода пользователя по ID"""
+    class Meta:
+        model = Profile
+        fields = ['id', 'username', 'type_user', 'img', ]
+
+
 class ProfileMusicSerializer(ModelSerializer):
     """ Сериалайзер для отображения username в сериалайзере музыки"""
     class Meta:
@@ -23,7 +30,7 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', 'password']
+        fields = ['id', 'username', 'type_user', 'img', 'password', 'email']
 
 
 class UpdateSerializer(ModelSerializer):

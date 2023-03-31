@@ -3,7 +3,7 @@ from knox.auth import TokenAuthentication
 from rest_framework import filters
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Profile
-from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer
+from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer, ProfileIDSerializer
 from rest_framework import generics, permissions
 from knox.views import LoginView as KnoxLoginView
 from .permissions import IsUserUpdate
@@ -22,7 +22,7 @@ class ProfileAllAPIView(generics.ListCreateAPIView):
 class ProfileDetail(generics.RetrieveAPIView):
     """ Получить информацию о пользователе по его id """
     queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+    serializer_class = ProfileIDSerializer
     permission_classes = (permissions.IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 

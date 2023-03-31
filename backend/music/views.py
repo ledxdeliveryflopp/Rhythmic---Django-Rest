@@ -1,7 +1,6 @@
 from knox.auth import TokenAuthentication
-from rest_framework import generics, filters, status
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 from .models import Music
 from .permissions import IsUserTypeTrue, IsUserOwner
 from .serializers import MusicSerializer, MusicUpdateSerializer, MusicListenSerializer, MusicCreateSerializer
