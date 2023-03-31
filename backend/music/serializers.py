@@ -22,7 +22,7 @@ class MusicListenSerializer(ModelSerializer):
         fields = ['id', 'title', 'upload_by', 'img', 'likes', 'music_file', ]
 
 
-class MusicCreateUpdateSerializer(ModelSerializer):
+class MusicCreateSerializer(ModelSerializer):
     """ Сериалайзер для обновления-создания музыки"""
 
     class Meta:
@@ -30,3 +30,8 @@ class MusicCreateUpdateSerializer(ModelSerializer):
         fields = ['id', 'title', 'genre', 'img', 'music_file', ]
 
 
+class MusicUpdateSerializer(ModelSerializer):
+    """ Сериалайзер для обновления-создания музыки"""
+    class Meta:
+        model = Music
+        fields = ['id', 'title', 'genre', 'img', 'music_file', ]

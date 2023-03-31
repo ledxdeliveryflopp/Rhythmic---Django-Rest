@@ -23,7 +23,7 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', 'password', 'email']
+        fields = ['id', 'username', 'type_user', 'img', 'password']
 
 
 class UpdateSerializer(ModelSerializer):

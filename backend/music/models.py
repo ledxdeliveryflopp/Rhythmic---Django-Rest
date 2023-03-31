@@ -18,9 +18,24 @@ class Music(models.Model):
 
     CLASSIC = 'Классическая'
     ELECTRONIC = 'Электроника'
+    ROCK = 'Рок'
+    ALTERNATIVE = 'Альтернатива'
+    DRUMANDBASS = 'Драм-н-бейс'
+    DABSTEP = 'Дабстеп'
+    RUSSIANROCK = 'Русский рок'
+    POP = 'Поп'
+    NUMETAL = 'Ню-метал'
+    METAL = 'Метал'
     MUSIC_GENRE = (
         (CLASSIC, 'классическая'),
         (ELECTRONIC, 'электроника'),
+        (ALTERNATIVE, 'Альтернатива'),
+        (DRUMANDBASS, 'Драм-н-бейс'),
+        (DABSTEP, 'Дабстеп'),
+        (RUSSIANROCK, 'Русский рок'),
+        (POP, 'Поп'),
+        (NUMETAL, 'Ню-метал'),
+        (METAL, 'Метал'),
     )
     genre = models.CharField(max_length=50, verbose_name='Жанр', choices=MUSIC_GENRE)
 
