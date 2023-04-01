@@ -1,3 +1,6 @@
+from typing import List
+
+from rest_framework import serializers
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from .models import Profile
@@ -10,11 +13,14 @@ class ProfileSerializer(ModelSerializer):
         fields = ['id', 'username', 'type_user', 'img', ]
 
 
+#TODO: сделать вывод названия музыки созданой этим пользователем
 class ProfileIDSerializer(ModelSerializer):
     """ Сериалайзер для вывода пользователя по ID"""
+    # music_name = serializers.CharField(source='Music.title')
+
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', ]
+        fields: List = ['id', 'username', 'type_user', 'img', 'upload_by__title']
 
 
 class ProfileMusicSerializer(ModelSerializer):
@@ -30,7 +36,7 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', 'password', 'email']
+        fields = ['id', 'username', 'type_user', 'img', 'password', ]
 
 
 class UpdateSerializer(ModelSerializer):
@@ -38,7 +44,7 @@ class UpdateSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['username', 'img', 'email']
+        fields = ['username', 'img', ]
 
 
 class LoginSerializer(ModelSerializer):

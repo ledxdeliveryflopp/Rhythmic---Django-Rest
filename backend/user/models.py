@@ -3,6 +3,7 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
+#TODO: сделать минимальные требования для пароля
 class Profile(AbstractUser):
     SINGER = 'Исполнитель'
     STANDARD = 'Стандартный'
