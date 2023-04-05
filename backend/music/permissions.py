@@ -13,12 +13,23 @@ class IsUserTypeTrue(permissions.BasePermission):
             == 'Исполнитель'
 
 
-class IsUserOwner(permissions.BasePermission):
-    """Проверка на владение записи"""
+class IsUserTrackOwner(permissions.BasePermission):
+    """Проверка на владение треком"""
 
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
 
         return request.user.is_staff or request.user.is_authenticated and request.user.type_user \
-            == 'Исполнитель' and obj.upload_by == request.user
+            == 'Исполнитель' and obj.author == request.user
+
+
+class IsUserAlbumOwner(permissions.BasePermission):
+    """Проверка на владение альбома"""
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return request.user.is_staff or request.user.is_authenticated and request.user.type_user \
+            == 'Исполнитель' and obj.author == request.user
