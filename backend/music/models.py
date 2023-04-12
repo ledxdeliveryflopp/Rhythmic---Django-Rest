@@ -8,11 +8,11 @@ class Music(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='автор')
     likes = models.IntegerField(default=0, verbose_name='коллво лайков')
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр')
-    album = models.ForeignKey('Albums', related_name='musics', on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='images/music/covers/', blank=False,
+    album = models.ForeignKey('Albums', related_name='musics',  on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='images/music/', blank=False,
                             verbose_name='Изображение',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
-    music_file = models.FileField(upload_to='files/tracks/', verbose_name='Файл с музыкой',
+    music_file = models.FileField(upload_to='files/music/',  verbose_name='Файл с музыкой',
                                   validators=[FileExtensionValidator(allowed_extensions=['mp3', ])])
 
     class Meta:
@@ -38,7 +38,7 @@ class Albums(models.Model):
     title = models.CharField(max_length=50, verbose_name='название альбома')
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='исполнитель')
     likes = models.IntegerField(default=0, verbose_name='коллво лайков')
-    img = models.ImageField(upload_to='images/albums/covers/', blank=False,
+    img = models.ImageField(upload_to='images/albums/', blank=False,
                             verbose_name='Изображение альбома',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
 

@@ -4,7 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Music, Albums, Genre
 from .permissions import IsUserTypeTrue, IsUserTrackOwner
 from .serializers import MusicSerializer, MusicUpdateSerializer, MusicListenSerializer, \
-    MusicCreateSerializer, AlbumCreateSerializer, AlbumSerializer, GenreSerializer
+    MusicCreateSerializer, AlbumCreateSerializer, AlbumSerializer, GenreSerializer, \
+    MusicTestSerializer, AlbumIDSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -15,6 +16,12 @@ class MusicAPIView(generics.ListCreateAPIView):
     search_fields = ['title', 'genre', 'author__username']
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
+
+
+# class MusicUrlAPIView(generics.ListCreateAPIView):
+#     """ Получить url трека в альбоме """
+#     queryset = Music.objects.all()
+#     serializer_class = MusicTestSerializer
 
 
 class GenreAPIView(generics.ListCreateAPIView):
@@ -29,6 +36,24 @@ class MusicListenAPIView(generics.RetrieveAPIView):
     """ Получить определенный трек по ID """
     queryset = Music.objects.all()
     serializer_class = MusicListenSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+
+
+class AlbumAPIView(generics.ListCreateAPIView):
+    """ Получить информацию о всех альбомах """
+    queryset = Albums.objects.all().order_by('-likes')
+    serializer_class = AlbumSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'author__username']
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+
+
+class AlbumIDAPIView(generics.RetrieveAPIView):
+    """ Получить определенный альбом по ID """
+    queryset = Albums.objects.all()
+    serializer_class = AlbumIDSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
@@ -51,16 +76,6 @@ class MusicUpdate(generics.UpdateAPIView):
     authentication_classes = (TokenAuthentication,)
 
 
-class AlbumAPIView(generics.ListCreateAPIView):
-    """ Получить информацию о всех альбомах """
-    queryset = Albums.objects.all().order_by('-likes')
-    serializer_class = AlbumSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'author__username']
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
-
-
 class AlbumCreate(generics.CreateAPIView):
     """ Создание альбома """
     serializer_class = AlbumCreateSerializer
@@ -69,19 +84,3 @@ class AlbumCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
-
-# class AlbumIdAPIView(generics.RetrieveAPIView):
-#     """ Получить определенный трек по ID """
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumIdSerializer
-#     permission_classes = (IsAuthenticated,)
-#     authentication_classes = (TokenAuthentication,)
-
-
-# class AlbumUpdate(generics.UpdateAPIView):
-#     """ Обновление альбома """
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumUpdateSerializer
-#     permission_classes = (IsUserAlbumOwner,)
-#     authentication_classes = (TokenAuthentication,)

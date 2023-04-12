@@ -12,7 +12,6 @@ class Profile(AbstractUser):
         (SINGER, 'Исполнитель'),
         (STANDARD, 'Стандартный'),
     )
-
     type_user = models.CharField(max_length=30, choices=USER_STATUS, verbose_name='Тип профиля')
     img = models.ImageField(upload_to='images/user/avatars/', null=True, blank=True,
                             verbose_name='Аватар',

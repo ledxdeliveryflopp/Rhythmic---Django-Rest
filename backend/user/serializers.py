@@ -27,7 +27,7 @@ class ProfileIDSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields: List = ['id', 'username', 'type_user', 'img', 'upload_by__title']
+        fields: List = ['id', 'username', 'type_user', 'img']
 
 
 class ProfileMusicSerializer(ModelSerializer):
