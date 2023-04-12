@@ -5,6 +5,14 @@ from music.models import Music
 from .models import Profile
 
 
+class UserMusicSerializer(ModelSerializer):
+    """ Сериалайзер для отображения id, title в сериалайзере юзера"""
+
+    class Meta:
+        model = Music
+        fields = ['id', 'title']
+
+
 class MusicTestSerializer(ModelSerializer):
     """ Сериалайзер для отображения username в сериалайзере музыки"""
     class Meta:
@@ -20,14 +28,13 @@ class ProfileSerializer(ModelSerializer):
         fields = ['id', 'username', 'type_user', 'img']
 
 
-#TODO: сделать вывод названия музыки созданой этим пользователем
 class ProfileIDSerializer(ModelSerializer):
     """ Сериалайзер для вывода пользователя по ID"""
-    # music_name = serializers.CharField(source='Music.title')
+    musics = UserMusicSerializer(many=True)
 
     class Meta:
         model = Profile
-        fields: List = ['id', 'username', 'type_user', 'img']
+        fields: List = ['id', 'username', 'musics', 'type_user', 'img']
 
 
 class ProfileMusicSerializer(ModelSerializer):
@@ -43,15 +50,15 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img', 'password', ]
+        fields = ['id', 'username', 'type_user', 'img', 'password']
 
 
 class UpdateSerializer(ModelSerializer):
-    """ Сериалайзер для регистрации"""
+    """ Сериалайзер для обновления пользователя"""
 
     class Meta:
         model = Profile
-        fields = ['username', 'img', ]
+        fields = ['username', 'img']
 
 
 class LoginSerializer(ModelSerializer):
