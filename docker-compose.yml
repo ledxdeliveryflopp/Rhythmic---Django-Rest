@@ -24,7 +24,7 @@ services:
     links:
       - postgres
       - adminer
-    build: ./settings/
+    build: ./backend/
     restart: always
     command: >
       sh -c "python manage.py makemigrations &&

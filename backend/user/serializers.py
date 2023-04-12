@@ -1,6 +1,4 @@
 from typing import List
-
-from rest_framework import serializers
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from music.models import Music
@@ -16,11 +14,10 @@ class MusicTestSerializer(ModelSerializer):
 
 class ProfileSerializer(ModelSerializer):
     """ Сериалайзер для вывода всех пользователей"""
-    tracks = MusicTestSerializer(many=True)
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'tracks', 'img', ]
+        fields = ['id', 'username', 'type_user', 'img']
 
 
 #TODO: сделать вывод названия музыки созданой этим пользователем

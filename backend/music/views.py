@@ -1,10 +1,10 @@
 from knox.auth import TokenAuthentication
 from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
-from .models import Music, Album
-from .permissions import IsUserTypeTrue, IsUserTrackOwner, IsUserAlbumOwner
+from .models import Music, Albums, Genre
+from .permissions import IsUserTypeTrue, IsUserTrackOwner
 from .serializers import MusicSerializer, MusicUpdateSerializer, MusicListenSerializer, \
-    MusicCreateSerializer, AlbumSerializer, AlbumCreateSerializer, AlbumUpdateSerializer
+    MusicCreateSerializer, AlbumCreateSerializer, AlbumSerializer, GenreSerializer
 
 
 class MusicAPIView(generics.ListCreateAPIView):
@@ -17,12 +17,10 @@ class MusicAPIView(generics.ListCreateAPIView):
     authentication_classes = (TokenAuthentication,)
 
 
-class AlbumAPIView(generics.ListCreateAPIView):
-    """ Получить информацию о всех альбомах """
-    queryset = Album.objects.all().order_by('-likes')
-    serializer_class = AlbumSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'author__username']
+class GenreAPIView(generics.ListCreateAPIView):
+    """ Получить информацию о всех жанров """
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
@@ -45,17 +43,6 @@ class MusicCreate(generics.CreateAPIView):
         serializer.save(author=self.request.user)
 
 
-class AlbumCreate(generics.CreateAPIView):
-    """ Создание альбома """
-    serializer_class = AlbumCreateSerializer
-    permission_classes = (IsUserTypeTrue,)
-    authentication_classes = (TokenAuthentication,)
-
-    # def perform_create(self, serializer):
-    #     serializer.save(author=self.request.user)
-    #     serializer.save(tracks=self.request.tracks)
-
-
 class MusicUpdate(generics.UpdateAPIView):
     """ Обновление музыки """
     queryset = Music.objects.all()
@@ -64,11 +51,37 @@ class MusicUpdate(generics.UpdateAPIView):
     authentication_classes = (TokenAuthentication,)
 
 
-class AlbumUpdate(generics.UpdateAPIView):
-    """ Обновление альбома """
-    queryset = Album.objects.all()
-    serializer_class = AlbumUpdateSerializer
-    permission_classes = (IsUserAlbumOwner,)
+class AlbumAPIView(generics.ListCreateAPIView):
+    """ Получить информацию о всех альбомах """
+    queryset = Albums.objects.all().order_by('-likes')
+    serializer_class = AlbumSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'author__username']
+    permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
 
 
+class AlbumCreate(generics.CreateAPIView):
+    """ Создание альбома """
+    serializer_class = AlbumCreateSerializer
+    permission_classes = (IsUserTypeTrue,)
+    authentication_classes = (TokenAuthentication,)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+
+# class AlbumIdAPIView(generics.RetrieveAPIView):
+#     """ Получить определенный трек по ID """
+#     queryset = Album.objects.all()
+#     serializer_class = AlbumIdSerializer
+#     permission_classes = (IsAuthenticated,)
+#     authentication_classes = (TokenAuthentication,)
+
+
+# class AlbumUpdate(generics.UpdateAPIView):
+#     """ Обновление альбома """
+#     queryset = Album.objects.all()
+#     serializer_class = AlbumUpdateSerializer
+#     permission_classes = (IsUserAlbumOwner,)
+#     authentication_classes = (TokenAuthentication,)

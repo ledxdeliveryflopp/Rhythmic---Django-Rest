@@ -2,8 +2,9 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-
 #TODO: сделать минимальные требования для пароля
+
+
 class Profile(AbstractUser):
     SINGER = 'Исполнитель'
     STANDARD = 'Стандартный'
@@ -23,4 +24,5 @@ class Profile(AbstractUser):
 
     def __str__(self) -> str:
         return f'{self.username}, {self.type_user}'
+
 

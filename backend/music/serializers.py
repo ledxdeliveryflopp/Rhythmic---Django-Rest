@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import Music, Album
+from .models import Music, Albums, Genre
 from user.serializers import ProfileMusicSerializer
 
 
@@ -14,7 +14,15 @@ class MusicTestSerializer(ModelSerializer):
 class AlbumTestSerializer(ModelSerializer):
     """ Сериалайзер для отображения username в сериалайзере музыки"""
     class Meta:
-        model = Album
+        model = Albums
+        fields = ['title']
+
+
+class GenreSerializer(ModelSerializer):
+    """ Сериалайрез списка жанров """
+
+    class Meta:
+        model = Genre
         fields = ['title']
 
 
@@ -22,6 +30,7 @@ class MusicSerializer(ModelSerializer):
     """ Сериалайрез музыки """
     author = ProfileMusicSerializer(read_only=True)
     album = AlbumTestSerializer(read_only=True)
+    genre = GenreSerializer(read_only=True)
 
     class Meta:
         model = Music
@@ -31,11 +40,11 @@ class MusicSerializer(ModelSerializer):
 class AlbumSerializer(ModelSerializer):
     """ Сериалайрез альбомов """
     author = ProfileMusicSerializer(read_only=True)
-    tracks = MusicTestSerializer(read_only=True)
+    musics = MusicTestSerializer(read_only=True, many=True)
 
     class Meta:
-        model = Album
-        fields = ['id', 'title', 'author', 'tracks', 'img', 'likes', ]
+        model = Albums
+        fields = ['id', 'title', 'author', 'musics', 'img', 'likes', ]
 
 
 class MusicListenSerializer(ModelSerializer):
@@ -49,7 +58,6 @@ class MusicListenSerializer(ModelSerializer):
 
 class MusicCreateSerializer(ModelSerializer):
     """ Сериалайзер для создания музыки"""
-    album = AlbumTestSerializer(many=True, required=False)
 
     class Meta:
         model = Music
@@ -65,19 +73,17 @@ class MusicUpdateSerializer(ModelSerializer):
 
 class AlbumCreateSerializer(ModelSerializer):
     """ Сериалайзер для создания альбома"""
-    tracks = MusicTestSerializer(many=True, required=False)
 
     class Meta:
-        model = Album
-        fields = ['id', 'title', 'tracks', 'img']
+        model = Albums
+        fields = ['id', 'title', 'img']
 
 
-class AlbumUpdateSerializer(ModelSerializer):
-    """ Сериалайзер для обновления альбома"""
-    title = serializers.CharField(required=False)
-    img = serializers.ImageField(required=False)
-
-    class Meta:
-        model = Album
-        fields = ['title', 'tracks', 'img']
-
+# class AlbumUpdateSerializer(ModelSerializer):
+#     """ Сериалайзер для обновления альбома"""
+#     title = serializers.CharField(required=False)
+#     img = serializers.ImageField(required=False)
+#
+#     class Meta:
+#         model = Albums
+#         fields = ['title', 'tracks', 'img']
