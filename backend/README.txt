@@ -19,5 +19,10 @@ logaut/ - ссылка на выход с удалением токена
 
 
 
-python manage.py seed music --number=15 --seeder "MyModel.my_field" "1.1.1.1"
-python manage.py seed api --number=15
+python manage.py makemigrations
+python manage.py migrate user
+python manage.py migrate knox
+python manage.py migrate session
+python manage.py migrate music
+python manage.py migrate album
+python manage.py migrate

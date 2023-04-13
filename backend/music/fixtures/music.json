@@ -7,7 +7,8 @@
             "author": "2",
             "genre": "1",
             "album": "1",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_tzFpFVE.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_tzFpFVE.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 3
         }
     },
@@ -19,7 +20,8 @@
             "author": "3",
             "genre": "4",
             "album": "3",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 0
         }
     },
@@ -31,7 +33,8 @@
             "author": "5",
             "genre": "2",
             "album": "2",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 100
         }
     },
@@ -43,7 +46,8 @@
             "author": "4",
             "genre": "3",
             "album": "2",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 100
         }
     },
@@ -55,7 +59,8 @@
             "author": "1",
             "genre": "2",
             "album": "3",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 100
         }
     },
@@ -67,7 +72,8 @@
             "author": "1",
             "genre": "4",
             "album": "2",
-            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "music_file": "/files/music/Annisokay_-_Bonfire_of_the_Millennials.mp3",
             "likes": 100
         }
     }
