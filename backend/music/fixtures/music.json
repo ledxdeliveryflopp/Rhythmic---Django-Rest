@@ -1,0 +1,38 @@
+[
+    {
+        "model": "music.music",
+        "pk": 1,
+        "fields": {
+            "title": "test1",
+            "author": "2",
+            "genre": "1",
+            "album": "1",
+            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_tzFpFVE.png",
+            "likes": 3
+        }
+    },
+    {
+        "model": "music.music",
+        "pk": 2,
+        "fields": {
+            "title": "test2",
+            "author": "3",
+            "genre": "4",
+            "album": "2",
+            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "likes": 0
+        }
+    },
+    {
+        "model": "music.music",
+        "pk": 3,
+        "fields": {
+            "title": "test3",
+            "author": "1",
+            "genre": "2",
+            "album": "2",
+            "img": "/media/images/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
+            "likes": 100
+        }
+    }
+]

@@ -2,13 +2,13 @@ from knox.auth import TokenAuthentication
 from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
 from core.permissions import IsUserTypeTrue
-from .models import Albums
+from .models import Album
 from .serializers import AlbumSerializer, AlbumIDSerializer, AlbumCreateSerializer
 
 
 class AlbumAPIView(generics.ListCreateAPIView):
     """ Получить информацию о всех альбомах """
-    queryset = Albums.objects.all().order_by('-likes')
+    queryset = Album.objects.all().order_by('-likes')
     serializer_class = AlbumSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'author__username']
@@ -18,7 +18,7 @@ class AlbumAPIView(generics.ListCreateAPIView):
 
 class AlbumIDAPIView(generics.RetrieveAPIView):
     """ Получить определенный альбом по ID """
-    queryset = Albums.objects.all()
+    queryset = Album.objects.all()
     serializer_class = AlbumIDSerializer
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)

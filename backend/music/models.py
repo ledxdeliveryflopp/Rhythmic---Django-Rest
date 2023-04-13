@@ -1,6 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
-from album.models import Albums
+from album.models import Album
 from user.models import Profile
 
 
@@ -10,7 +10,7 @@ class Music(models.Model):
                                verbose_name='автор')
     likes = models.IntegerField(default=0, verbose_name='коллво лайков')
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр')
-    album = models.ForeignKey(Albums, related_name='musics',  on_delete=models.CASCADE,
+    album = models.ForeignKey(Album, related_name='musics', on_delete=models.CASCADE,
                               verbose_name='альбом')
 
     img = models.ImageField(upload_to='images/music/', blank=False, validators=[

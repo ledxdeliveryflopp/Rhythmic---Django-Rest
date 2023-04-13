@@ -19,3 +19,5 @@ logaut/ - ссылка на выход с удалением токена
 
 
 
+python manage.py seed music --number=15 --seeder "MyModel.my_field" "1.1.1.1"
+python manage.py seed api --number=15

@@ -11,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,6 +119,10 @@ REST_KNOX = {
     'MIN_REFRESH_INTERVAL': 60
 }
 
+FIXTURE_DIRS = [
+     '/fixtures/'
+]
+
 
 LANGUAGE_CODE = 'ru-RU'
 
@@ -135,3 +140,4 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.Profile'
+

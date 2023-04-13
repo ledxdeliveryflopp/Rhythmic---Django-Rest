@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Albums
+from .models import Album
 
 
-@admin.register(Albums)
+@admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
     pass
 

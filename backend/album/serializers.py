@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from music.models import Music
-from .models import Albums
+from .models import Album
 from user.serializers import ProfileMusicSerializer
 
 
@@ -15,7 +15,7 @@ class IDMusicAlbumSerializer(ModelSerializer):
 class IDAlbumMusicSerializer(ModelSerializer):
     """ Сериалайзер для отображения id в сериалайзере альбомов"""
     class Meta:
-        model = Albums
+        model = Album
         fields = ['id']
 
 
@@ -24,7 +24,7 @@ class AlbumSerializer(ModelSerializer):
     author = ProfileMusicSerializer(read_only=True)
 
     class Meta:
-        model = Albums
+        model = Album
         fields = ['id', 'title', 'author', 'img', 'likes']
 
 
@@ -34,7 +34,7 @@ class AlbumIDSerializer(ModelSerializer):
     musics = IDMusicAlbumSerializer(many=True)
 
     class Meta:
-        model = Albums
+        model = Album
         fields = ['id', 'title', 'author', 'img', 'musics', 'likes']
 
 
@@ -42,5 +42,5 @@ class AlbumCreateSerializer(ModelSerializer):
     """ Сериалайзер для создания альбома"""
 
     class Meta:
-        model = Albums
+        model = Album
         fields = ['id', 'title', 'img']

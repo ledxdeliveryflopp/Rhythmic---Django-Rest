@@ -1,0 +1,20 @@
+[
+    {
+        "model": "user.profile",
+        "pk": 2,
+        "fields": {
+            "username": "test2",
+            "type_user": "Исполнитель",
+            "img": null
+        }
+    },
+    {
+        "model": "user.profile",
+        "pk": 3,
+        "fields": {
+            "username": "test3",
+            "type_user": "Стандартный",
+            "img": null
+        }
+    }
+]
