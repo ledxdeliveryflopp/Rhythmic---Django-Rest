@@ -1,0 +1,37 @@
+[
+    {
+      "model": "music.genre",
+      "pk": 1,
+      "fields": {
+        "title": "test"
+      }
+    },
+    {
+      "model": "music.genre",
+      "pk": 2,
+      "fields": {
+        "title": "test2"
+      }
+    },
+  {
+      "model": "music.genre",
+      "pk": 3,
+      "fields": {
+        "title": "test3"
+      }
+    },
+  {
+      "model": "music.genre",
+      "pk": 4,
+      "fields": {
+        "title": "test4"
+      }
+    },
+  {
+      "model": "music.genre",
+      "pk": 5,
+      "fields": {
+        "title": "test5"
+      }
+    }
+]

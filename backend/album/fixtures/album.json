@@ -18,5 +18,35 @@
             "img": "/media/images/albums/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2.png",
             "likes": 0
         }
+    },
+    {
+        "model": "album.album",
+        "pk": 3,
+        "fields": {
+            "title": "test3",
+            "author": "3",
+            "img": "/media/images/albums/1.jpg",
+            "likes": 0
+        }
+    },
+    {
+        "model": "album.album",
+        "pk": 4,
+        "fields": {
+            "title": "test4",
+            "author": "5",
+            "img": "/media/images/albums/1.jpg",
+            "likes": 0
+        }
+    },
+    {
+        "model": "album.album",
+        "pk": 5,
+        "fields": {
+            "title": "test5",
+            "author": "4",
+            "img": "/media/images/albums/1.jpg",
+            "likes": 0
+        }
     }
 ]

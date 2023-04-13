@@ -9,7 +9,7 @@ class GenreSerializer(ModelSerializer):
 
     class Meta:
         model = Genre
-        fields = ['title']
+        fields = ['id', 'title']
 
 
 class ALLMusicSerializer(ModelSerializer):
