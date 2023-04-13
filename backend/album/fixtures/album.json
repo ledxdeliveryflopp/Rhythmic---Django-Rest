@@ -34,7 +34,7 @@
         "pk": 4,
         "fields": {
             "title": "test4",
-            "author": "5",
+            "author": "3",
             "img": "/media/images/albums/1.jpg",
             "likes": 0
         }
@@ -44,7 +44,7 @@
         "pk": 5,
         "fields": {
             "title": "test5",
-            "author": "4",
+            "author": "2",
             "img": "/media/images/albums/1.jpg",
             "likes": 0
         }

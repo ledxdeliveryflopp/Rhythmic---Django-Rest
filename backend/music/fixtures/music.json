@@ -30,7 +30,7 @@
         "pk": 3,
         "fields": {
             "title": "test3",
-            "author": "5",
+            "author": "3",
             "genre": "2",
             "album": "2",
             "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
@@ -56,7 +56,7 @@
         "pk": 5,
         "fields": {
             "title": "test5",
-            "author": "1",
+            "author": "2",
             "genre": "2",
             "album": "3",
             "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
@@ -69,7 +69,7 @@
         "pk": 6,
         "fields": {
             "title": "test6",
-            "author": "1",
+            "author": "3",
             "genre": "4",
             "album": "2",
             "img": "/files/music/%D1%8B%D0%B2%D0%B0%D1%8B%D0%B0%D0%B2%D0%B0%D1%8B%D0%B2_0TUmkIu.png",
