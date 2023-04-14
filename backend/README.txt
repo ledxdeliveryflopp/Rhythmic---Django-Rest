@@ -17,7 +17,7 @@ login/ - ссылка на вход
 logaut/ - ссылка на выход с удалением токена
 
 
-
+docker compose up -d --build
 
 python manage.py makemigrations
 python manage.py migrate user
