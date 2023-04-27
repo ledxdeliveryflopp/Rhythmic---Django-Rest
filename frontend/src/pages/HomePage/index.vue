@@ -1,9 +1,5 @@
 <template>
-  <main class="main">
-    <section class="sec">
-      <div class="home-page">Домашняя страница</div>
-    </section>
-  </main>
+  <h1>Домашняя страница</h1>
 </template>
 
 <script>
@@ -12,6 +8,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-@use "style";
-</style>
+<style scoped></style>

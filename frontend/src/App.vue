@@ -1,16 +1,15 @@
 <template>
-  <div class="page">
-    <header-component />
-    <router-view />
-    <footer-component />
-  </div>
+  <header-component />
+  <router-view />
 </template>
 
-<script setup>
+<script>
 import HeaderComponent from "@/components/HeaderComponent/index.vue";
-import FooterComponent from "@/components/FooterComponent/index.vue";
+
+export default {
+  name: "App",
+  components: { HeaderComponent },
+};
 </script>
 
-<style lang="scss">
-@use "main";
-</style>
+<style scoped></style>

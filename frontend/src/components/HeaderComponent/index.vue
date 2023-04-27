@@ -1,7 +1,5 @@
 <template>
-  <header class="header">
-    <div class="header__container">Header</div>
-  </header>
+  <h2>Шапка</h2>
 </template>
 
 <script>
@@ -10,16 +8,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.header {
-  display: flex;
-  justify-content: center;
-}
-
-.header__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1100px;
-}
-</style>
+<style scoped></style>
