@@ -1,6 +1,8 @@
 <template>
-  <header-component />
-  <router-view />
+  <div class="page">
+    <header-component />
+    <router-view />
+  </div>
 </template>
 
 <script>

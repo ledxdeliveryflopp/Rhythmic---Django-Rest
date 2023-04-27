@@ -1,5 +1,7 @@
 <template>
-  <h2>Шапка</h2>
+  <div>
+    <h2>Шапка</h2>
+  </div>
 </template>
 
 <script>

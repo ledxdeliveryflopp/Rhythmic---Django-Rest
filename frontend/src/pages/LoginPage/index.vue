@@ -1,33 +1,39 @@
 <template>
-  <v-sheet class="mx-auto" width="300">
-    <v-form @submit.prevent>
-      <v-text-field
-        v-model="login"
-        :rules="[requiredField, minChar]"
-        label="First name"
-      ></v-text-field>
-      <v-btn block class="mt-2" type="submit">Submit</v-btn>
-    </v-form>
-  </v-sheet>
+  <div class="login-page">
+    <v-sheet class="mx-auto" width="300">
+      <v-form @submit.prevent>
+        <v-text-field
+          v-model="login"
+          :rules="loginRule"
+          label="Логин"
+        ></v-text-field>
+        <v-text-field v-model="password" label="Пароль"></v-text-field>
+        <v-btn block class="mt-2" type="submit">Submit</v-btn>
+      </v-form>
+    </v-sheet>
+  </div>
 </template>
 
 <script>
-import { minChar, requiredField } from "@/helpers/validation/validation";
-
 export default {
   name: "LoginPage",
-  computed: {
-    requiredField() {
-      return requiredField();
-    },
-    minChar() {
-      return minChar();
-    },
-  },
   data() {
     return {
+      valid: false,
       login: "",
       password: "",
+      loginRule: [
+        (value) => {
+          if (value) return true;
+
+          return "Name is requred.";
+        },
+        (value) => {
+          if (value?.length <= 10) return true;
+
+          return "Name must be less than 10 characters.";
+        },
+      ],
     };
   },
 };
