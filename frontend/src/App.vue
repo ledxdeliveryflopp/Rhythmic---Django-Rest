@@ -1,17 +1,20 @@
 <template>
-  <div class="page">
-    <header-component />
-    <router-view />
-  </div>
+  <v-app>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HeaderComponent from "@/components/HeaderComponent/index.vue";
-
 export default {
   name: "App",
-  components: { HeaderComponent },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style scoped></style>
+<style lang="scss">
+@use "./assets/styles/base";
+</style>
