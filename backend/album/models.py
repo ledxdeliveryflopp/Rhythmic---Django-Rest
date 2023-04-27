@@ -7,7 +7,6 @@ class Album(models.Model):
     title = models.CharField(max_length=50, verbose_name='название альбома')
     author = models.ForeignKey(Profile, on_delete=models.CASCADE,
                                verbose_name='исполнитель')
-    likes = models.IntegerField(default=0, verbose_name='коллво лайков')
     img = models.ImageField(upload_to='images/albums/', blank=False,
                             validators=[FileExtensionValidator(allowed_extensions=['png',
                                                                                    'jpg'])],

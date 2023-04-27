@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/', include('music.urls', namespace='music')),
     path('api/', include('album.urls', namespace='album')),
     path('api/', include('user.urls', namespace='user')),
+    path('api/', include('playlist.urls', namespace='playlist')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

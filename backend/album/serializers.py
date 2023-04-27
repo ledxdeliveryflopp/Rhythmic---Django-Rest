@@ -25,7 +25,7 @@ class AlbumSerializer(ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'title', 'author', 'img', 'likes']
+        fields = ['id', 'title', 'author', 'img']
 
 
 class AlbumIDSerializer(ModelSerializer):
@@ -35,7 +35,7 @@ class AlbumIDSerializer(ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'title', 'author', 'img', 'musics', 'likes']
+        fields = ['id', 'title', 'author', 'img', 'musics']
 
 
 class AlbumCreateSerializer(ModelSerializer):

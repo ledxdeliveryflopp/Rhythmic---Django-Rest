@@ -8,7 +8,7 @@ from .serializers import AlbumSerializer, AlbumIDSerializer, AlbumCreateSerializ
 
 class AlbumAPIView(generics.ListCreateAPIView):
     """ Получить информацию о всех альбомах """
-    queryset = Album.objects.all().order_by('-likes')
+    queryset = Album.objects.all()
     serializer_class = AlbumSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'author__username']

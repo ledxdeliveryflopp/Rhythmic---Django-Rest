@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from album.serializers import IDAlbumMusicSerializer
-from .models import Music, Genre
+from album.serializers import IDAlbumMusicSerializer, IDMusicAlbumSerializer
+from .models import Music, Genre, Like, Playlist
 from user.serializers import ProfileMusicSerializer
 
 
@@ -12,19 +12,23 @@ class GenreSerializer(ModelSerializer):
         fields = ['id', 'title']
 
 
+class LikeSerializer(ModelSerializer):
+    """ Сериалайрез списка жанров """
+
+    class Meta:
+        model = Like
+        fields = ['title']
+
+
 class ALLMusicSerializer(ModelSerializer):
     """ Сериалайрез музыки """
     author = ProfileMusicSerializer(read_only=True)
     genre = GenreSerializer(read_only=True)
-    # album = serializers.HyperlinkedRelatedField(
-    #     read_only=True,
-    #     view_name='music:album-view'
-    # )
     album = IDAlbumMusicSerializer(read_only=True)
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'genre', 'album', 'img', 'likes', ]
+        fields = ['id', 'title', 'author', 'genre', 'album', 'img']
 
 
 class MusicListenSerializer(ModelSerializer):
@@ -34,7 +38,7 @@ class MusicListenSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'img', 'album', 'likes', 'music_file', ]
+        fields = ['id', 'title', 'author', 'img', 'album', 'likes', 'music_file']
 
 
 class MusicCreateSerializer(ModelSerializer):
@@ -42,12 +46,12 @@ class MusicCreateSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'genre', 'img', 'album', 'music_file', ]
+        fields = ['id', 'title', 'genre', 'img', 'album', 'music_file']
 
 
 class MusicUpdateSerializer(ModelSerializer):
     """ Сериалайзер для обновления музыки"""
     class Meta:
         model = Music
-        fields = ['id', 'title', 'genre', 'img', 'music_file']
+        fields = ['id', 'title', 'genre', 'img', 'likes', 'dislikes', 'music_file']
 

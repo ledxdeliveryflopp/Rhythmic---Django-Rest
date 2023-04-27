@@ -9,9 +9,9 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.settings')
     try:
         from django.core.management import execute_from_command_line
-        if len(sys.argv) == 2 and sys.argv[1] == 'migrate':
-            execute_from_command_line(['manage.py', 'loaddata', 'user.json', 'music.json',
-                                       'album.json', 'genre.json'])
+        # if len(sys.argv) == 2 and sys.argv[1] == 'migrate':
+        #     execute_from_command_line(['manage.py', 'loaddata', 'user.json', 'music.json',
+        #                                'album.json', 'genre.json'])
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "

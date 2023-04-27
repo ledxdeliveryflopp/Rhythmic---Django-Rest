@@ -25,4 +25,4 @@ python manage.py migrate knox
 python manage.py migrate session
 python manage.py migrate music
 python manage.py migrate album
-python manage.py migrate
+python manage.py migratedocker
