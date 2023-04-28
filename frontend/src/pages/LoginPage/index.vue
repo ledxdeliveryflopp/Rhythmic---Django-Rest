@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="pa-12 h-screen d-flex align-center bgc-dark">
-    <v-card class="mx-auto px-6 py-8 w-33" min-width="250">
+    <v-card class="mx-auto px-6 py-8 w-33 rounded-xl" min-width="250">
       <v-form @submit.prevent="onSubmit">
         <v-text-field
           v-model="login"
@@ -50,12 +50,20 @@ export default {
       loginRule: [
         (value) => {
           if (value) return true;
-
           return "Логин обязателен";
         },
         (value) => {
           if (value?.length <= 5) return true;
-
+          return "Длина не менее 5 символов";
+        },
+      ],
+      passwordRule: [
+        (value) => {
+          if (value) return true;
+          return "Пароль обязателен";
+        },
+        (value) => {
+          if (value?.length <= 5) return true;
           return "Длина не менее 5 символов";
         },
       ],
