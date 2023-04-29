@@ -43,7 +43,7 @@
           Войти
         </v-btn>
       </v-form>
-      <p class="error-text">{{ error }}</p>
+      <p class="error-text mt-2">{{ error }}</p>
     </v-card>
   </v-sheet>
 </template>
