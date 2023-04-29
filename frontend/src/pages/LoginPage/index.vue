@@ -1,32 +1,41 @@
 <template>
-  <v-sheet class="pa-12 h-screen d-flex align-center bgc-dark">
-    <v-card class="mx-auto px-6 py-8 w-33 rounded-xl" min-width="250">
-      <v-form @submit.prevent="onSubmit">
+  <v-sheet class="pa-12 h-screen d-flex align-center login-page">
+    <v-card
+      class="mx-auto px-6 py-8 w-33 rounded bg-opacity-50"
+      max-width="500"
+      min-width="250"
+    >
+      <v-form v-model="valid" @submit.prevent="onSubmit">
         <v-text-field
           v-model="login"
           :readonly="loading"
           :rules="loginRule"
-          class="mb-2"
+          class="mb-2 text-field"
           label="Логин"
+          name="login"
         ></v-text-field>
 
         <v-text-field
           v-model="password"
-          :append-icon="hiddenPassword ? 'visibility' : 'visibility_off'"
+          :append-inner-icon="
+            hiddenPassword ? 'mdi-eye-outline' : 'mdi-eye-off-outline'
+          "
           :readonly="loading"
           :rules="passwordRule"
           :type="hiddenPassword ? 'password' : 'text'"
           label="Пароль"
+          name="password"
           placeholder="Введите пароль"
-          @click:append="() => (hiddenPassword = !hiddenPassword)"
+          @click:appendInner="() => (hiddenPassword = !hiddenPassword)"
         ></v-text-field>
 
         <br />
 
         <v-btn
+          :disabled="!valid"
           :loading="loading"
           block
-          class="bgc-highlight"
+          class="button"
           size="large"
           type="submit"
           variant="elevated"
@@ -53,7 +62,7 @@ export default {
           return "Логин обязателен";
         },
         (value) => {
-          if (value?.length <= 5) return true;
+          if (value?.length >= 5) return true;
           return "Длина не менее 5 символов";
         },
       ],
@@ -63,17 +72,18 @@ export default {
           return "Пароль обязателен";
         },
         (value) => {
-          if (value?.length <= 5) return true;
+          if (value?.length >= 5) return true;
           return "Длина не менее 5 символов";
         },
       ],
     };
   },
+  methods: {
+    onSubmit() {},
+  },
 };
 </script>
 
-<style scoped>
-.login-page {
-  min-height: 100vh;
-}
+<style lang="scss">
+@use "style";
 </style>
