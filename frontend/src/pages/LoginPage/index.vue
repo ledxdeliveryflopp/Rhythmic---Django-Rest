@@ -43,15 +43,20 @@
           Войти
         </v-btn>
       </v-form>
+      <p class="error-text">{{ error }}</p>
     </v-card>
   </v-sheet>
 </template>
 
 <script>
+import { loginService } from "@/helpers/api/user";
+
 export default {
   name: "LoginPage",
   data() {
     return {
+      error: "",
+      loading: false,
       valid: false,
       hiddenPassword: true,
       login: "",
@@ -78,8 +83,30 @@ export default {
       ],
     };
   },
+  computed: {
+    preparingFormData() {
+      return {
+        username: this.login,
+        password: this.password,
+      };
+    },
+  },
   methods: {
-    onSubmit() {},
+    onSubmit() {
+      this.loading = true;
+      loginService(this.preparingFormData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          if (error.non_field_errors) {
+            this.error = error.non_field_errors[0];
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
   },
 };
 </script>
