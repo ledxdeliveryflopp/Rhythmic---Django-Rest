@@ -1,0 +1,38 @@
+[
+    {
+        "model": "user.profile",
+        "pk": 1,
+        "fields": {
+            "username": "test1",
+            "type_user": "Исполнитель",
+            "img": null
+        }
+    },
+    {
+        "model": "user.profile",
+        "pk": 2,
+        "fields": {
+            "username": "test2",
+            "type_user": "Стандартный",
+            "img": null
+        }
+    },
+    {
+        "model": "user.profile",
+        "pk": 3,
+        "fields": {
+            "username": "test3",
+            "type_user": "Исполнитель",
+            "img": null
+        }
+    },
+    {
+        "model": "user.profile",
+        "pk": 4,
+        "fields": {
+            "username": "test4",
+            "type_user": "Стандартный",
+            "img": null
+        }
+    }
+]

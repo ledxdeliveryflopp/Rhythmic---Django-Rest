@@ -15,8 +15,6 @@ services:
   adminer:
     image: adminer
     restart: always
-    links:
-      - postgres
     ports:
       - "8080:8080"
 
@@ -24,15 +22,16 @@ services:
     links:
       - postgres
       - adminer
-    build: ./settings/
+    build: ./backend/
     restart: always
     command: >
       sh -c "python manage.py makemigrations &&
-             python manage.py migrate &&
-             python manage.py makemigrations user &&
              python manage.py migrate user &&
-             python manage.py makemigrations music &&
+             python manage.py migrate knox &&
              python manage.py migrate music &&
+             python manage.py migrate album &&
+             python manage.py migrate playlist &&
+             python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
