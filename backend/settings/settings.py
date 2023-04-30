@@ -11,7 +11,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -96,7 +95,6 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -104,17 +102,11 @@ REST_FRAMEWORK = {
     ]
 }
 
-REST_KNOX = {
-    'TOKEN_TTL': timedelta(hours=10),  # время жизни токена
-    'TOKEN_LIMIT_PER_USER': 1,
-    'AUTO_REFRESH': True,
-    'MIN_REFRESH_INTERVAL': 60
-}
+APPEND_SLASH = False
 
 FIXTURE_DIRS = [
      '/fixtures/'
 ]
-
 
 LANGUAGE_CODE = 'ru-RU'
 

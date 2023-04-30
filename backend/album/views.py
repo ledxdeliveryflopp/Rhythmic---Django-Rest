@@ -1,5 +1,6 @@
 from knox.auth import TokenAuthentication
 from rest_framework import generics, filters
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from core.permissions import IsUserTypeTrue
 from .models import Album
@@ -13,7 +14,7 @@ class AlbumAPIView(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'author__username']
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (SessionAuthentication,)
 
 
 class AlbumIDAPIView(generics.RetrieveAPIView):
@@ -21,14 +22,14 @@ class AlbumIDAPIView(generics.RetrieveAPIView):
     queryset = Album.objects.all()
     serializer_class = AlbumIDSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (SessionAuthentication,)
 
 
 class AlbumCreate(generics.CreateAPIView):
     """ Создание альбома """
     serializer_class = AlbumCreateSerializer
     permission_classes = (IsUserTypeTrue,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (SessionAuthentication,)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

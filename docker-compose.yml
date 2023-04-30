@@ -27,7 +27,6 @@ services:
     command: >
       sh -c "python manage.py makemigrations &&
              python manage.py migrate user &&
-             python manage.py migrate knox &&
              python manage.py migrate music &&
              python manage.py migrate album &&
              python manage.py migrate playlist &&
