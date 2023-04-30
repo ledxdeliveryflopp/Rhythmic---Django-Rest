@@ -9,5 +9,4 @@ urlpatterns = [
     path('music<int:pk>/', MusicListenAPIView.as_view(), name='music-listen'),
     path('create-music/',  MusicCreate.as_view(), name='Music-create'),
     path('update-music<int:pk>/',  MusicUpdate.as_view(), name='Music-update'),
-    # path('add-like<int:pk>/',  MusicAddLike.as_view(), name='Music-add-like'),
 ]

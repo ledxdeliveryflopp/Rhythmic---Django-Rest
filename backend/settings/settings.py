@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'django_cleanup.apps.CleanupConfig',
-    'knox',
     'core',
     'music',
     'user',

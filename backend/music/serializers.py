@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from album.serializers import IDAlbumMusicSerializer, IDMusicAlbumSerializer
-from .models import Music, Genre, Like, Playlist
+from album.serializers import IDAlbumMusicSerializer
+from .models import Music, Genre
 from user.serializers import ProfileMusicSerializer
 
 
@@ -12,12 +12,12 @@ class GenreSerializer(ModelSerializer):
         fields = ['id', 'title']
 
 
-class LikeSerializer(ModelSerializer):
-    """ Сериалайрез списка жанров """
-
-    class Meta:
-        model = Like
-        fields = ['title']
+# class LikeSerializer(ModelSerializer):
+#     """ Сериалайрез списка жанров """
+#
+#     class Meta:
+#         model = Like
+#         fields = ['title']
 
 
 class ALLMusicSerializer(ModelSerializer):
@@ -28,7 +28,7 @@ class ALLMusicSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'genre', 'album', 'img']
+        fields = ['id', 'title', 'author', 'genre', 'album', 'likes', 'img']
 
 
 class MusicListenSerializer(ModelSerializer):
@@ -53,5 +53,5 @@ class MusicUpdateSerializer(ModelSerializer):
     """ Сериалайзер для обновления музыки"""
     class Meta:
         model = Music
-        fields = ['id', 'title', 'genre', 'img', 'likes', 'dislikes', 'music_file']
+        fields = ['id', 'title', 'genre', 'img', 'music_file']
 

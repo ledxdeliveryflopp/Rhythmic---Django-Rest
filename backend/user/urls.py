@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import ProfileAllAPIView, ProfileDetail, RegisterAPI, LoginAPI, UpdateUserAPI, \
-  Logout, LoginAPIView
-from knox import views as knox_views
+from .views import ProfileAllAPIView, ProfileDetail, RegisterAPI, UpdateUserAPI, Logout, \
+    LoginAPIView
 
 app_name = 'user'
 

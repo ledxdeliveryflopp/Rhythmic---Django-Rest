@@ -3,9 +3,12 @@
         "model": "user.profile",
         "pk": 1,
         "fields": {
-            "username": "test1",
+            "username": "admin",
+            "password": "admin",
             "type_user": "Исполнитель",
-            "img": null
+            "img": null,
+            "is_superuser": true,
+            "is_staff": true
         }
     },
     {

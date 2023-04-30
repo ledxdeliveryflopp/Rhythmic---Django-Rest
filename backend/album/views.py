@@ -1,4 +1,3 @@
-from knox.auth import TokenAuthentication
 from rest_framework import generics, filters
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated

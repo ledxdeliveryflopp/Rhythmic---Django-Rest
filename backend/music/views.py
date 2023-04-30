@@ -1,4 +1,3 @@
-from knox.auth import TokenAuthentication
 from rest_framework import generics, filters
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -52,9 +51,9 @@ class MusicUpdate(generics.UpdateAPIView):
     authentication_classes = (SessionAuthentication,)
 
 
-class MusicAddLike(generics.UpdateAPIView):
-    """ Добавление лайков """
-    queryset = Music.objects.all()
-    serializer_class = MusicUpdateSerializer
-    authentication_classes = (SessionAuthentication,)
+# class MusicAddLike(generics.UpdateAPIView):
+#     """ Добавление лайков """
+#     queryset = Music.objects.all()
+#     serializer_class = MusicUpdateSerializer
+#     authentication_classes = (SessionAuthentication,)
 
