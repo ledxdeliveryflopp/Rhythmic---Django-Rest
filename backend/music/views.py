@@ -12,7 +12,7 @@ class MusicAPIView(generics.ListCreateAPIView):
     queryset = Music.objects.all().order_by('-likes')
     serializer_class = ALLMusicSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'genre', 'author__username']
+    search_fields = ['title', 'genre__title', 'author__username']
     permission_classes = (IsAuthenticated,)
     authentication_classes = (SessionAuthentication,)
 
