@@ -1,5 +1,5 @@
 from django.contrib.auth import login, logout, authenticate
-from rest_framework import filters, status
+from rest_framework import filters, status, exceptions
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -67,8 +67,8 @@ class LoginAPIView(APIView):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return Response(status=status.HTTP_200_OK)
+                return Response({'detail': 'Вход успешен'})
             else:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                raise exceptions.NotFound("Ничего не найдено")
         else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            raise exceptions.NotFound("Ничего не найдено")
