@@ -1,9 +1,9 @@
 from django.contrib.auth import login, logout, authenticate
-from rest_framework import filters, status, exceptions
-from rest_framework.authentication import SessionAuthentication
+from rest_framework import filters, exceptions
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Profile
 from .serializers import ProfileSerializer, RegisterSerializer, LoginSerializer, UpdateSerializer, ProfileIDSerializer
 from rest_framework import generics, permissions
@@ -17,7 +17,6 @@ class ProfileAllAPIView(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['username']
     permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
 
 
 class ProfileDetail(generics.RetrieveAPIView):
@@ -25,7 +24,6 @@ class ProfileDetail(generics.RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileIDSerializer
     permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
 
 
 class RegisterAPI(generics.CreateAPIView):
@@ -43,16 +41,16 @@ class UpdateUserAPI(generics.UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = UpdateSerializer
     permission_classes = (IsUserUpdate, )
-    authentication_classes = (SessionAuthentication,)
 
 
 class Logout(APIView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
 
     def get(self, request):
+        # token = RefreshToken.for_user(user)
+        # token.blacklist()
         logout(request)
-        return Response()
+        return Response({'detail': "Успешно"})
 
 
 class LoginAPIView(APIView):
@@ -64,10 +62,11 @@ class LoginAPIView(APIView):
         username = data.get('username', None)
         password = data.get('password', None)
         user = authenticate(username=username, password=password)
+        refresh = RefreshToken.for_user(user)
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return Response({'detail': 'Вход успешен'})
+                return Response({'access_token': str(refresh.access_token)})
             else:
                 raise exceptions.NotFound("Ничего не найдено")
         else:

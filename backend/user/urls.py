@@ -1,4 +1,5 @@
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenBlacklistView
 from .views import ProfileAllAPIView, ProfileDetail, RegisterAPI, UpdateUserAPI, Logout, \
     LoginAPIView
 
@@ -11,5 +12,7 @@ urlpatterns = [
     path('update-user<int:pk>/', UpdateUserAPI.as_view(), name='profile-create'),
     path('login/', LoginAPIView.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='login'),
-    # path('logout/', knox_views.LogoutView.as_view(), name='logout'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
 ]
