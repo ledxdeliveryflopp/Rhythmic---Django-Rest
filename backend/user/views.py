@@ -62,12 +62,12 @@ class LoginAPIView(APIView):
         username = data.get('username', None)
         password = data.get('password', None)
         user = authenticate(username=username, password=password)
-        if user is None:
-            raise exceptions.NotFound("Такого пользователя не существует")
-        if not user.check_password(password):
-            raise exceptions.NotFound("Не верный логин или пароль")
+        refresh = RefreshToken.for_user(user)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return Response({'access_token': str(refresh.access_token)})
+            else:
+                raise exceptions.NotFound("Ничего не найдено")
         else:
-            login(request, user)
-            refresh = RefreshToken.for_user(user)
-            return Response({'access_token': str(refresh.access_token), 'refresh_token': str(
-                refresh)})
+            raise exceptions.NotFound("Ничего не найдено")
