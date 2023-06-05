@@ -47,8 +47,6 @@ class Logout(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        # token = RefreshToken.for_user(user)
-        # token.blacklist()
         logout(request)
         return Response({'detail': "Успешно"})
 
@@ -62,12 +60,13 @@ class LoginAPIView(APIView):
         username = data.get('username', None)
         password = data.get('password', None)
         user = authenticate(username=username, password=password)
-        refresh = RefreshToken.for_user(user)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return Response({'access_token': str(refresh.access_token)})
-            else:
-                raise exceptions.NotFound("Ничего не найдено")
+        if user is None:
+            raise exceptions.NotFound("Такого пользователя не существует")
+        if not user.check_password(password):
+            raise exceptions.NotFound("Не верный логин или пароль")
         else:
-            raise exceptions.NotFound("Ничего не найдено")
+            login(request, user)
+            refresh = RefreshToken.for_user(user)
+            return Response({'access_token': str(refresh.access_token), 'refresh_token': str(
+                refresh)})
+
