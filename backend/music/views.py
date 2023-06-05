@@ -45,9 +45,4 @@ class MusicUpdate(generics.UpdateAPIView):
     permission_classes = (IsUserTrackOwner,)
 
 
-# class MusicAddLike(generics.UpdateAPIView):
-#     """ Добавление лайков """
-#     queryset = Music.objects.all()
-#     serializer_class = MusicUpdateSerializer
-#     authentication_classes = (SessionAuthentication,)
-
+# class MusicAddFav(generics.UpdateAPIView):

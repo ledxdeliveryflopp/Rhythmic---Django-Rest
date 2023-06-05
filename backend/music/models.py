@@ -9,7 +9,6 @@ class Music(models.Model):
     title = models.CharField(max_length=50, verbose_name='название')
     author = models.ForeignKey(Profile, related_name='musics', on_delete=models.CASCADE,
                                verbose_name='автор')
-    # likes = models.ManyToManyField('Like', related_name='likes', verbose_name='коллво лайков')
     likes = models.IntegerField(default=0, verbose_name='коллво лайков')
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр')
     album = models.ForeignKey(Album, related_name='musics', on_delete=models.CASCADE,
@@ -22,6 +21,7 @@ class Music(models.Model):
 
     music_file = models.FileField(upload_to='files/music/', validators=[FileExtensionValidator(
         allowed_extensions=['mp3', ])], verbose_name='Файл с музыкой')
+    favourites = models.ManyToManyField(Profile, blank=True, verbose_name='Избранное')
 
     class Meta:
         verbose_name = 'Музыка'
