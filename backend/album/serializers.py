@@ -44,3 +44,12 @@ class AlbumCreateSerializer(ModelSerializer):
     class Meta:
         model = Album
         fields = ['id', 'title', 'img']
+
+
+class AlbumUpdateSerializer(ModelSerializer):
+    """ Сериалайзер для обновления аАльбома"""
+    musics = IDMusicAlbumSerializer(many=True)
+
+    class Meta:
+        model = Album
+        fields = ['title', 'img', 'musics']

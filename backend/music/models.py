@@ -1,7 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from album.models import Album
-from playlist.models import Playlist
 from user.models import Profile
 
 
@@ -13,11 +12,10 @@ class Music(models.Model):
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр')
     album = models.ForeignKey(Album, related_name='musics', on_delete=models.CASCADE,
                               verbose_name='альбом')
-    playlist = models.ForeignKey(Playlist, related_name='musics', on_delete=models.CASCADE,
-                                 verbose_name='плейлист', null=True, blank=True)
 
-    img = models.ImageField(upload_to='images/music/', blank=False, validators=[
-        FileExtensionValidator(allowed_extensions=['png', 'jpg'])], verbose_name='Изображение')
+    img = models.ImageField(upload_to='music/cover/', blank=False, validators=[
+        FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])],
+                            verbose_name='Изображение')
 
     music_file = models.FileField(upload_to='files/music/', validators=[FileExtensionValidator(
         allowed_extensions=['mp3', ])], verbose_name='Файл с музыкой')
@@ -29,13 +27,6 @@ class Music(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title}, {self.author.username}'
-
-
-# class Like(models.Model):
-#     title = models.ManyToManyField(Profile)
-#
-#     def __str__(self):
-#         return f'{self.title}'
 
 
 class Genre(models.Model):

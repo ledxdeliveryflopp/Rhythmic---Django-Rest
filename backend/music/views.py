@@ -1,6 +1,7 @@
 from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
-from core.permissions import IsUserTypeTrue, IsUserTrackOwner
+from rest_framework.response import Response
+from core.permissions import IsUserTypeTrue, IsUserOwner
 from .models import Music, Genre
 from .serializers import ALLMusicSerializer, MusicUpdateSerializer, MusicListenSerializer, \
     MusicCreateSerializer, GenreSerializer
@@ -22,7 +23,7 @@ class GenreAPIView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
 
-class MusicListenAPIView(generics.RetrieveAPIView):
+class MusicListenApiView(generics.RetrieveAPIView):
     """ Получить определенный трек по ID """
     queryset = Music.objects.all()
     serializer_class = MusicListenSerializer
@@ -42,7 +43,17 @@ class MusicUpdate(generics.UpdateAPIView):
     """ Обновление музыки """
     queryset = Music.objects.all()
     serializer_class = MusicUpdateSerializer
-    permission_classes = (IsUserTrackOwner,)
+    permission_classes = (IsUserOwner,)
 
 
-# class MusicAddFav(generics.UpdateAPIView):
+class MusicDelete(generics.DestroyAPIView):
+    """ Удаление музыки """
+    queryset = Music.objects.all()
+    serializer_class = MusicListenSerializer
+    permission_classes = (IsUserOwner,)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({'detail': 'Удаление успешно'})
+

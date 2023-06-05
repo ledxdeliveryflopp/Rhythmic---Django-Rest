@@ -3,18 +3,6 @@
         "model": "user.profile",
         "pk": 1,
         "fields": {
-            "username": "admin",
-            "password": "admin",
-            "type_user": "Исполнитель",
-            "img": null,
-            "is_superuser": true,
-            "is_staff": true
-        }
-    },
-    {
-        "model": "user.profile",
-        "pk": 2,
-        "fields": {
             "username": "test2",
             "type_user": "Стандартный",
             "img": null
@@ -22,7 +10,7 @@
     },
     {
         "model": "user.profile",
-        "pk": 3,
+        "pk": 2,
         "fields": {
             "username": "test3",
             "type_user": "Исполнитель",
@@ -31,7 +19,7 @@
     },
     {
         "model": "user.profile",
-        "pk": 4,
+        "pk": 3,
         "fields": {
             "username": "test4",
             "type_user": "Стандартный",
