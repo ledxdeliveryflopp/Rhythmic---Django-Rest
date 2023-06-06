@@ -2,8 +2,9 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-
 #TODO: сделать минимальные требования для пароля
+
+
 class Profile(AbstractUser):
     SINGER = 'Исполнитель'
     STANDARD = 'Стандартный'
@@ -14,7 +15,8 @@ class Profile(AbstractUser):
     type_user = models.CharField(max_length=30, choices=USER_STATUS, verbose_name='Тип профиля')
     img = models.ImageField(upload_to='user/avatars/', null=False, blank=False,
                             verbose_name='Аватар',
-                            validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
+                            validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                                                                   'jpeg'])])
 
     class Meta:
         verbose_name = 'Пользователь'

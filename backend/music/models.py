@@ -19,7 +19,6 @@ class Music(models.Model):
 
     music_file = models.FileField(upload_to='files/music/', validators=[FileExtensionValidator(
         allowed_extensions=['mp3', ])], verbose_name='Файл с музыкой')
-    favourites = models.ManyToManyField(Profile, blank=True, verbose_name='Избранное')
 
     class Meta:
         verbose_name = 'Музыка'

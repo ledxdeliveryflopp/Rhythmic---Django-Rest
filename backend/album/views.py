@@ -1,13 +1,13 @@
 from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from core.permissions import IsUserTypeTrue, IsUserOwner, IsUserUpdate
+from core.permissions import IsUserOwner, IsUserUpdate
 from .models import Album
 from .serializers import AlbumSerializer, AlbumIDSerializer, AlbumCreateSerializer, \
     AlbumUpdateSerializer
 
 
-class AlbumApiView(generics.ListCreateAPIView):
+class AlbumApiView(generics.ListAPIView):
     """ Получить информацию о всех альбомах """
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
@@ -26,7 +26,7 @@ class AlbumIdApiView(generics.RetrieveAPIView):
 class AlbumCreateApiView(generics.CreateAPIView):
     """ Создание альбома """
     serializer_class = AlbumCreateSerializer
-    permission_classes = (IsUserTypeTrue,)
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

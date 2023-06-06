@@ -7,7 +7,7 @@ from .serializers import ALLMusicSerializer, MusicUpdateSerializer, MusicListenS
     MusicCreateSerializer, GenreSerializer
 
 
-class MusicAPIView(generics.ListCreateAPIView):
+class MusicAPIView(generics.ListAPIView):
     """ Получить информацию о всей музыке """
     queryset = Music.objects.all().order_by('-likes')
     serializer_class = ALLMusicSerializer
@@ -16,7 +16,7 @@ class MusicAPIView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
 
-class GenreAPIView(generics.ListCreateAPIView):
+class GenreAPIView(generics.ListAPIView):
     """ Получить информацию о всех жанров """
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer

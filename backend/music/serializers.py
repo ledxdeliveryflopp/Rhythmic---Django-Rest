@@ -38,7 +38,7 @@ class MusicListenSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'img', 'album', 'likes', 'music_file']
+        fields = '__all__'
 
 
 class MusicCreateSerializer(ModelSerializer):

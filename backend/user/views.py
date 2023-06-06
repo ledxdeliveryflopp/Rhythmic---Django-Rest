@@ -5,12 +5,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from core.permissions import IsUserUpdate
 from .models import Profile
-from .serializers import ProfileSerializer, RegisterSerializer, UpdateUserSerializer,\
+from .serializers import ProfileSerializer, RegisterSerializer, UpdateUserSerializer, \
     ProfileIdSerializer
 from rest_framework import generics, permissions
 
 
-class ProfileAllApiView(generics.ListCreateAPIView):
+class ProfileAllApiView(generics.ListAPIView):
     """ Получить информацию о всех пользователях """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -26,6 +26,13 @@ class ProfileIdDetailView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
 
 
+class UpdateUserApiView(generics.UpdateAPIView):
+    """Обновление пользователя"""
+    queryset = Profile.objects.all()
+    serializer_class = UpdateUserSerializer
+    permission_classes = (IsUserUpdate, )
+
+
 class RegisterApiView(generics.CreateAPIView):
     """ Регистрация"""
     serializer_class = RegisterSerializer
@@ -35,12 +42,6 @@ class RegisterApiView(generics.CreateAPIView):
         user = serializer.save()
         user.set_password(user.password)
         user.save()
-
-
-class UpdateUserApiView(generics.UpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = UpdateUserSerializer
-    permission_classes = (IsUserUpdate, )
 
 
 class LogoutApiView(APIView):

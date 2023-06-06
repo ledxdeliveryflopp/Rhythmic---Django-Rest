@@ -7,7 +7,7 @@ from .serializers import PlaylistSerializer, PlaylistCreateSerializer, PlaylistI
     UpdatePlaylistSerializer
 
 
-class PlaylistUserApiView(generics.ListCreateAPIView):
+class PlaylistUserApiView(generics.ListAPIView):
     """ Получить информацию о плейлистах пользователя """
     serializer_class = PlaylistSerializer
     filter_backends = [filters.SearchFilter]

@@ -9,7 +9,7 @@ class Album(models.Model):
                                verbose_name='исполнитель')
     img = models.ImageField(upload_to='album/cover/', blank=False,
                             validators=[FileExtensionValidator(allowed_extensions=['png',
-                                                                                   'jpg'])],
+                                                                                   'jpg', 'jpeg'])],
                             verbose_name='Изображение альбома',)
 
     class Meta:

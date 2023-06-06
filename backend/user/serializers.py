@@ -1,7 +1,4 @@
 from typing import List
-
-from django.contrib.auth import authenticate
-from rest_framework import serializers
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 from music.models import Music
@@ -37,7 +34,7 @@ class ProfileIdSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields: List = ['id', 'username', 'musics', 'type_user', 'img']
+        fields: List = ['id', 'username', 'musics','favourite_music', 'type_user', 'img']
 
 
 class ProfileMusicSerializer(ModelSerializer):

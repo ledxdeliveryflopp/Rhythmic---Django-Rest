@@ -23,10 +23,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'django_cleanup',
     'core',
-    'music',
     'user',
+    'music',
     'album',
-    'playlist'
+    'playlist',
+    'favorite'
 ]
 
 MIDDLEWARE = [
