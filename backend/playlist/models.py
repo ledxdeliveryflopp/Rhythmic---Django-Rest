@@ -6,7 +6,7 @@ from user.models import Profile
 
 class Playlist(models.Model):
     title = models.CharField(max_length=50, verbose_name='название плейлиста')
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE,
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='playlist',
                                verbose_name='автор')
     music = models.ManyToManyField(Music, verbose_name='музыка', blank=True)
 

@@ -9,6 +9,7 @@ from .serializers import PlaylistSerializer, PlaylistCreateSerializer, PlaylistI
 
 class PlaylistUserApiView(generics.ListAPIView):
     """ Получить информацию о плейлистах пользователя """
+    queryset = Playlist.objects.all()
     serializer_class = PlaylistSerializer
     filter_backends = [filters.SearchFilter]
     permission_classes = (IsAuthenticated,)
@@ -20,6 +21,7 @@ class PlaylistUserApiView(generics.ListAPIView):
 
 class PlaylistIDApiView(generics.RetrieveAPIView):
     """ Получить информацию о плейлисте пользователя """
+    queryset = Playlist.objects.all()
     serializer_class = PlaylistIdSerializer
     filter_backends = [filters.SearchFilter]
     permission_classes = (IsAuthenticated,)

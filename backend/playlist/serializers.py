@@ -14,11 +14,11 @@ class IdMusicPlaylistSerializer(ModelSerializer):
 
 class PlaylistSerializer(ModelSerializer):
     """ Сериалайрез плейлистов """
-    author = ProfileMusicSerializer(read_only=True)
+    # author = ProfileMusicSerializer(read_only=True)
 
     class Meta:
         model = Playlist
-        fields = ['id', 'title', 'author', 'img', 'music']
+        fields = ['id', 'title', 'img', 'music']
 
 
 class PlaylistIdSerializer(ModelSerializer):
@@ -28,7 +28,7 @@ class PlaylistIdSerializer(ModelSerializer):
 
     class Meta:
         model = Playlist
-        fields = ['id', 'title', 'author', 'img', 'music']
+        fields = ['id', 'title', 'img', 'music']
 
 
 class PlaylistCreateSerializer(ModelSerializer):

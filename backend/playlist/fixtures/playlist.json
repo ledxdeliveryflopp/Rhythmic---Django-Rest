@@ -1,0 +1,34 @@
+[
+    {
+        "model": "playlist.playlist",
+        "pk": 1,
+        "fields": {
+            "title": "test1",
+            "author": "2"
+        }
+    },
+    {
+        "model": "playlist.playlist",
+        "pk": 2,
+        "fields": {
+            "username": "test2",
+            "author": "2"
+        }
+    },
+    {
+        "model": "playlist.playlist",
+        "pk": 3,
+        "fields": {
+            "username": "test3",
+            "author": "1"
+        }
+    },
+    {
+        "model": "playlist.playlist",
+        "pk": 4,
+        "fields": {
+            "username": "test4",
+            "author": "3"
+        }
+    }
+]

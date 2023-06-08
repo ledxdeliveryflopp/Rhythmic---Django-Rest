@@ -1,11 +1,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
-
-#TODO: сделать минимальные требования для пароля
+import favorites.models
 
 
 class Profile(AbstractUser):
+    id = models.AutoField(primary_key=True, unique=True, verbose_name='id')
     SINGER = 'Исполнитель'
     STANDARD = 'Стандартный'
     USER_STATUS = (
@@ -24,4 +24,3 @@ class Profile(AbstractUser):
 
     def __str__(self) -> str:
         return f'{self.username}, {self.type_user}'
-
