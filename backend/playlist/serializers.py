@@ -14,7 +14,6 @@ class IdMusicPlaylistSerializer(ModelSerializer):
 
 class PlaylistSerializer(ModelSerializer):
     """ Сериалайрез плейлистов """
-    # author = ProfileMusicSerializer(read_only=True)
 
     class Meta:
         model = Playlist

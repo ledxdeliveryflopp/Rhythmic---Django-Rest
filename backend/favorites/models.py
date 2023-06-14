@@ -18,6 +18,7 @@ class Favorite(models.Model):
 
     @receiver(post_save, sender='user.Profile', dispatch_uid="create_favorite_user")
     def create_favorite(sender, instance, created, **kwargs):
+        """Сигнал для создания избранного"""
         if created:
             Favorite.objects.create(author=instance)
         instance.favorite.save()

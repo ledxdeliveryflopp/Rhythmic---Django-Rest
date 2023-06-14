@@ -3,5 +3,5 @@ from .models import Favorite
 
 
 @admin.register(Favorite)
-class FavoriteeAdmin(admin.ModelAdmin):
+class FavoriteAdmin(admin.ModelAdmin):
     pass
