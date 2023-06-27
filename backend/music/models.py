@@ -1,6 +1,7 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from album.models import Album
+from core.Validators import validate_music_file
 from user.models import Profile
 
 
@@ -18,7 +19,7 @@ class Music(models.Model):
                             verbose_name='Изображение')
 
     music_file = models.FileField(upload_to='files/music/', validators=[FileExtensionValidator(
-        allowed_extensions=['mp3', ])], verbose_name='Файл с музыкой')
+        allowed_extensions=['mp3', ]), validate_music_file], verbose_name='Файл с музыкой')
 
     class Meta:
         verbose_name = 'Музыка'
