@@ -1,5 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from core.Validators import validate_img
 from music.models import Music
 from user.models import Profile
 
@@ -11,7 +12,7 @@ class Playlist(models.Model):
     music = models.ManyToManyField(Music, verbose_name='музыка', blank=True)
 
     img = models.ImageField(upload_to='playlist/cover/', blank=False, validators=[
-        FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])],
+        FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg']), validate_img],
                             verbose_name='Изображение')
 
     class Meta:

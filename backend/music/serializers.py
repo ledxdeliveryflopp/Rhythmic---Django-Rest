@@ -1,3 +1,5 @@
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 from album.serializers import IDAlbumMusicSerializer
 from .models import Music, Genre
@@ -34,11 +36,10 @@ class ALLMusicSerializer(ModelSerializer):
 class MusicListenSerializer(ModelSerializer):
     """ Сериалайрез прослушивания музыки """
     author = ProfileMusicSerializer(read_only=True)
-    album = IDAlbumMusicSerializer(read_only=True)
 
     class Meta:
         model = Music
-        fields = '__all__'
+        fields = ['id', 'title', 'author', 'genre', 'album', 'likes', 'img', 'music_file']
 
 
 class MusicCreateSerializer(ModelSerializer):

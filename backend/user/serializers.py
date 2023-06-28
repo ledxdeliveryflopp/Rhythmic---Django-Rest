@@ -1,6 +1,7 @@
 from typing import List
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
+from core.Validators import validate_password
 from music.models import Music
 from .models import Profile
 
@@ -15,6 +16,7 @@ class UserMusicSerializer(ModelSerializer):
 
 class MusicTestSerializer(ModelSerializer):
     """ Сериалайзер для отображения username в сериалайзере музыки"""
+
     class Meta:
         model = Music
         fields = ['title']
@@ -25,7 +27,7 @@ class ProfileSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'type_user', 'img']
+        fields = ['id', 'username', 'type_user', 'favorite_genre', 'img']
 
 
 class ProfileIdSerializer(ModelSerializer):
@@ -34,11 +36,13 @@ class ProfileIdSerializer(ModelSerializer):
 
     class Meta:
         model = Profile
-        fields: List = ['id', 'username', 'musics', 'playlist', 'favorite', 'type_user', 'img']
+        fields: List = ['id', 'username', 'musics', 'playlist', 'favorite',
+                        'type_user', 'favorite_genre', 'img']
 
 
 class ProfileMusicSerializer(ModelSerializer):
     """ Сериалайзер для отображения username в сериалайзере музыки"""
+
     class Meta:
         model = Profile
         fields = ['username', ]
@@ -46,7 +50,7 @@ class ProfileMusicSerializer(ModelSerializer):
 
 class RegisterSerializer(ModelSerializer):
     """ Сериалайзер для регистрации"""
-    password = CharField(write_only=True, required=True)
+    password = CharField(write_only=True, required=True, validators=[validate_password])
 
     class Meta:
         model = Profile

@@ -15,8 +15,7 @@ class PlaylistUserApiView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        user = self.request.user
-        return Playlist.objects.filter(author=user)
+        return Playlist.objects.filter(author=self.request.user)
 
 
 class PlaylistIDApiView(generics.RetrieveAPIView):
@@ -27,8 +26,7 @@ class PlaylistIDApiView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        user = self.request.user
-        return Playlist.objects.filter(author=user)
+        return Playlist.objects.filter(author=self.request.user)
 
 
 class PlaylistCreateApiView(generics.CreateAPIView):
