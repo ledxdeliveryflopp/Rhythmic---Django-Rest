@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 import re
 
 
-def validate_music_file(value, request):
+def validate_music_file(value):
     filesize = value.size
 
     if filesize > 500000:
@@ -11,7 +11,7 @@ def validate_music_file(value, request):
         return value
 
 
-def validate_img(value, request):
+def validate_img(value):
     filesize = value.size
 
     if filesize > 300000:
