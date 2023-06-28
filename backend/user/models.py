@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from core.Validators import validate_img
 
 
 class Profile(AbstractUser):
@@ -15,7 +16,9 @@ class Profile(AbstractUser):
     img = models.ImageField(upload_to='user/avatars/', null=False, blank=False,
                             verbose_name='Аватар',
                             validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
-                                                                                   'jpeg'])])
+                                                                                   'jpeg']),
+                                        validate_img])
+
 
     class Meta:
         verbose_name = 'Пользователь'

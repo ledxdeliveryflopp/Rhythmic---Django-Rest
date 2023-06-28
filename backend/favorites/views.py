@@ -12,8 +12,7 @@ class FavoriteUserApiView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        user = self.request.user
-        return Favorite.objects.filter(author=user)
+        return Favorite.objects.filter(author=self.request.user)
 
 
 class UpdateFavoriteApiView(generics.UpdateAPIView):

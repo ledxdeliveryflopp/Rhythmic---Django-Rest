@@ -1,6 +1,10 @@
 from typing import List
+
+from rest_framework import serializers
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
+from rest_framework_simplejwt.tokens import AccessToken
+
 from core.Validators import validate_password
 from music.models import Music
 from .models import Profile

@@ -14,32 +14,24 @@ class GenreSerializer(ModelSerializer):
         fields = ['id', 'title']
 
 
-# class LikeSerializer(ModelSerializer):
-#     """ Сериалайрез списка жанров """
-#
-#     class Meta:
-#         model = Like
-#         fields = ['title']
-
-
 class ALLMusicSerializer(ModelSerializer):
     """ Сериалайрез музыки """
-    author = ProfileMusicSerializer(read_only=True)
-    genre = GenreSerializer(read_only=True)
-    album = IDAlbumMusicSerializer(read_only=True)
+    # author = ProfileMusicSerializer(read_only=True)
+    # genre = GenreSerializer(read_only=True)
+    # album = IDAlbumMusicSerializer(read_only=True)
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'genre', 'album', 'likes', 'img']
+        fields = ['title', 'author', 'genre', 'album', 'img']
 
 
 class MusicListenSerializer(ModelSerializer):
     """ Сериалайрез прослушивания музыки """
-    author = ProfileMusicSerializer(read_only=True)
+    # author = ProfileMusicSerializer(read_only=True)
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'author', 'genre', 'album', 'likes', 'img', 'music_file']
+        fields = ['title', 'author', 'album', 'img', 'music_file']
 
 
 class MusicCreateSerializer(ModelSerializer):
@@ -47,12 +39,12 @@ class MusicCreateSerializer(ModelSerializer):
 
     class Meta:
         model = Music
-        fields = ['id', 'title', 'genre', 'img', 'album', 'music_file']
+        fields = ['title', 'genre', 'img', 'album', 'music_file']
 
 
 class MusicUpdateSerializer(ModelSerializer):
     """ Сериалайзер для обновления музыки"""
     class Meta:
         model = Music
-        fields = ['id', 'title', 'genre', 'img', 'music_file']
+        fields = ['title', 'genre', 'img', 'music_file']
 

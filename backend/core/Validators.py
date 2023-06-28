@@ -5,7 +5,7 @@ import re
 def validate_music_file(value):
     filesize = value.size
 
-    if filesize > 500000:
+    if filesize > 5000000:
         raise ValidationError("Максимальный размер файла 5Mb")
     else:
         return value
@@ -14,7 +14,7 @@ def validate_music_file(value):
 def validate_img(value):
     filesize = value.size
 
-    if filesize > 300000:
+    if filesize > 3000000:
         raise ValidationError("Максимальный размер файла 3Mb")
     else:
         return value
@@ -32,7 +32,7 @@ def validate_password(password):
             "Пароль должен иметь минимум 1 прописную букву, a-z.")
     elif not re.findall('[@#]', password):
         raise ValidationError(
-            "Пароль должен иметь минимум 1 специальный символ: " + "@ or #")
+            "Пароль должен иметь минимум 1 специальный символ: " + "@ или #")
     elif len(password) < 5:
         raise ValidationError("Пароль должен иметь длину минимум 5 символов.")
     return password

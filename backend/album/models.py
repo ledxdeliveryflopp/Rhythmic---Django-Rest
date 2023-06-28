@@ -1,5 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from core.Validators import validate_img
 from user.models import Profile
 
 
@@ -9,7 +10,9 @@ class Album(models.Model):
                                verbose_name='исполнитель')
     img = models.ImageField(upload_to='album/cover/', blank=False,
                             validators=[FileExtensionValidator(allowed_extensions=['png',
-                                                                                   'jpg', 'jpeg'])],
+                                                                                   'jpg',
+                                                                                   'jpeg']),
+                                        validate_img],
                             verbose_name='Изображение альбома',)
 
     class Meta:

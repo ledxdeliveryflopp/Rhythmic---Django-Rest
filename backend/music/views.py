@@ -9,7 +9,7 @@ from .serializers import ALLMusicSerializer, MusicUpdateSerializer, MusicListenS
 
 class MusicAPIView(generics.ListAPIView):
     """ Получить информацию о всей музыке """
-    queryset = Music.objects.all().order_by('-likes')
+    queryset = Music.objects.all()
     serializer_class = ALLMusicSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'genre__title', 'author__username']
